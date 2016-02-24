@@ -1,0 +1,24 @@
+default: &default_mysql
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+
+development:
+  <<: *default_mysql
+  database: chekoubei_development
+
+test:
+  <<: *default_mysql
+  database: chekoubei_test
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  database: chekoubei
+  reconnect: false
+
