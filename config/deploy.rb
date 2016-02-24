@@ -60,13 +60,13 @@ namespace :deploy do
       # invoke 'unicorn:legacy_restart'
     end
   end
-  #
-  desc 'cp assets/images to public/assets'
-  before :restart, :cp_assets do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :cp, '-R', release_path.join('app/assets/images/*'), release_path.join('public/assets/')
-    end
-  end
+  # api 项目暂时用不到
+  # desc 'cp assets/images to public/assets'
+  # before :restart, :cp_assets do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     execute :cp, '-R', release_path.join('app/assets/images/*'), release_path.join('public/assets/')
+  #   end
+  # end
 
   after :publishing, :restart
   # after :restart, :kindeditor_assets
