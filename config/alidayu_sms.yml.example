@@ -1,0 +1,14 @@
+defaults: &defaults
+  alidayu:
+    app_key: 23315455
+    app_secret: "7ebdb291e737051e0aac93025e63ba94"
+    post_url: 'http://gw.api.taobao.com/router/rest'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
