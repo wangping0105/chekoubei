@@ -3,7 +3,7 @@ namespace :api, defaults: { format: :json } do
     resources :auth, only: [] do
       collection do
         post :login, :logout
-        get :ping
+        get :ping, :send_verification_code
       end
     end
   end

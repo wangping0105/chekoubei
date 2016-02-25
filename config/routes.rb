@@ -6,4 +6,6 @@ end
 
 Rails.application.routes.draw do
   draw :api
+
+  root "home#index"
 end

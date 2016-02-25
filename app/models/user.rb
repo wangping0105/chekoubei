@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :sms_codes
+
   before_create :generate_authentication_token
   has_secure_password
 
