@@ -34,7 +34,7 @@ set :repo_url, 'git@github.com:wangping0105/chekoubei.git'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 set :linked_files, fetch(:linked_files, []).push(*%W{
-  config/nginx.conf config/unicorn/production.rb config/database.yml config/secrets.yml
+  config/nginx.conf config/unicorn/production.rb config/database.yml config/secrets.yml config/alidayu_sms.yml
 })
 
 
@@ -118,4 +118,13 @@ namespace :deploy do
       end
     end
   end
+
+  desc '在服务器上创建api文档'
+  task :build_api_doc do
+    on roles(:web) do
+      within(release_path) { rake 'api:build_doc' }
+    end
+  end
+
+  after :publishing, :build_api_doc
 end
