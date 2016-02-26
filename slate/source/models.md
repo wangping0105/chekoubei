@@ -10,22 +10,16 @@ toc_footers:
   - <a href='models.html'>数据表设计</a>
 
 includes:
-  - user/auth
-  - errors
+  - database/design
 
 search: true
 ---
 
-# 介绍
-本文档是 车口碑 项目的RESTful接口文档
+
+注意：登录成功后，可以在请求参数中携带身份验证信息（即在请求参数中传user_token、version_code、device），也可以将身份信息放到请求头的Authorization里，即在每个请求头中都加入如下参数：
 
 
-
-注意：登录成功后，可以在请求参数中携带身份验证信息（即在请求参数中 user_token、version_code、device），也可以将身份信息放到请求头的Authorization里，即在每个请求头中都加入如下参数：
-
-
-`Authorization: Token token="{{user_token}}",
-                     version_code="{{version_code}}",device="{{device}}"`
+`Authorization: Token token="{{user_token}}",version_code="{{version_code}}",device="{{device}}"`
 
 
 
@@ -51,6 +45,7 @@ search: true
 
 字段名 | 是否必填 | 描述
 --------- | ------- | -----------
+access_token | true | 必须要有的
 user_token | true | 必须要有的（除了登陆接口）
 version_code | true | 必须要有的
 device | true | 设备类型（ios, android）
