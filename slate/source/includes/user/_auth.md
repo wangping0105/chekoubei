@@ -1,8 +1,8 @@
-# 登录接口
+# 用户登录接口
 ## 手机验证码发送
 ### HTTP Request
 
-`GET  /api/v1/auth/send_verification_code`
+`GET  /api/v1/user/auth/send_verification_code`
 
 ### URL Parameters
 

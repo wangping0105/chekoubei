@@ -9,7 +9,7 @@ toc_footers:
   - <a href='index.html'>Api doc 首页</a>
 
 includes:
-  - auth
+  - user/auth
   - errors
 
 search: true
