@@ -43,6 +43,8 @@ gem 'paranoia', '~> 2.1.0'
 gem 'active_model_serializers'
 # rails param
 gem 'rails_param'
+# 地理位置相关
+gem 'geocoder', '~> 1.2.12'
 
 group :development do
   gem 'pry-rails'

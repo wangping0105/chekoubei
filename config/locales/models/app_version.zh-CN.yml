@@ -1,0 +1,25 @@
+zh-CN:
+  activerecord:
+    models:
+      app_version: "App 版本"
+    attributes:
+      app_version:
+        id: "ID"
+        name: "名称"
+        version_name: "版本名称"
+        version_code: "版本代码"
+        download_url: "下载地址"
+        changelogs: "更新日志"
+        created_at: "创建时间"
+        updated_at: "更新于"
+        deleted_at: "删除于"
+  enums:
+    app_version:
+      app_type:
+        web: "Web"
+        android: "Android"
+        ios: "IOS"
+      upgrade:
+        notice: "提醒"
+        suggest: "建议"
+        force: "强制"
