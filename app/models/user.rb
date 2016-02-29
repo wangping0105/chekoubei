@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     def find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        paranoia_scope.where(conditions).where(["lower(phone) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+        paranoia_scope.where(conditions).where(["lower(phone) = :value", { :value => login.downcase }]).first
       else
         paranoia_scope.where(conditions).first
       end
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     def with_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        paranoia_scope.where(conditions).where(["lower(phone) = :value OR lower(email) = :value", { :value => login.downcase }])
+        paranoia_scope.where(conditions).where(["lower(phone) = :value", { :value => login.downcase }])
       else
         paranoia_scope.where(conditions)
       end

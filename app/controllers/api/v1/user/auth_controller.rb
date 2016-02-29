@@ -2,8 +2,10 @@ class Api::V1::User::AuthController < Api::V1::BaseController
   skip_before_action :authenticate!, only: [:login, :send_verification_code]
 
   def login
-    login_field = params[:login].include?("@") ? :email : :phone
-    @user = User.with_database_authentication(login_field => params[:login]).first
+    param! :phone, String, required: true
+    param! :password, String, required: true
+
+    @user = User.with_database_authentication(login_field: params[:login]).first
     if @user && @user.authenticate(params[:password])
       @user.update_authentication_token
     else
@@ -18,7 +20,8 @@ class Api::V1::User::AuthController < Api::V1::BaseController
     param! :phone, String, required: true
 
     code, phone = params[:code], params[:phone]
-    sms = SmsCode.find_or_create_by(sms_type: params[:sms_type], phone: phone)
+    user = User.find_or_create_by(phone: phone)
+    sms = user.sms_codes.find_or_create_by(sms_type: params[:sms_type], phone: phone)
     sms.code = code
     if sms.save
       result = Alidayu::Sms.send_code_for_sign_up(code, phone)
@@ -33,7 +36,8 @@ class Api::V1::User::AuthController < Api::V1::BaseController
   end
 
   def logout
-
+    current_user.user_devices.destroy_all
+    render json: { code: 0, data: {}}
   end
 
   def ping
