@@ -1,7 +1,7 @@
 class CreateStores < ActiveRecord::Migration
   def change
     create_table :stores do |t|
-      t.string :name
+      t.string :name, index: true
       t.string :pinyin, index: true
       t.string :short_name
       t.text :introduction
@@ -12,6 +12,7 @@ class CreateStores < ActiveRecord::Migration
       t.integer :order_count
       t.float    :lat
       t.float    :lng
+      t.integer :deleted_at
 
       t.timestamps null: false
     end

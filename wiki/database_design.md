@@ -8,13 +8,29 @@
 store_name | 店名
 address | 地址
 introduction | 业务简介
+:pinyin | 业务简介
+:short_name | 简称
+:category | 类型
+:store_type | 类别（维修店，快修店）
+:business_hours | 营业时间
+:level | 等级
+:order_count | 成单数
+:lat | 纬度
+:lng | 经度
 
-#= store_users 商户
+#= store_users 商户账户
 字段名 | 描述
 --------- | ------- | -----------
+store_id | 商户id
 name | 名称
-phone | 电话
-admin | true or false
+:phone | 名称
+:sex | 性别
+:avatar  | 头像
+:authentication_token, index: true
+:password_digest
+:activated | 是否激活
+:admin | 是否管理员
+:deleted_at
 
 
 #= orders 订单
