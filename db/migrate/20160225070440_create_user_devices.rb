@@ -5,8 +5,7 @@ class CreateUserDevices < ActiveRecord::Migration
       t.string :device_token
       t.string :client_id
       t.integer :platform
-      t.references :user, index: true
-      t.references :organization, index: true
+      t.integer :user_id, index: true
 
       t.timestamps
     end

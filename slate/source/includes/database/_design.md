@@ -36,7 +36,7 @@ introduction | 业务简介
 :lat | 纬度
 :lng | 经度
 
-#= store_users 商户账户
+#= users 用户表
 字段名 | 描述
 --------- | ------- | -----------
 store_id | 商户id

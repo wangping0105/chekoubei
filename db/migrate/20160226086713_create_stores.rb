@@ -16,6 +16,6 @@ class CreateStores < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :addresses, [:lat, :lng]
+    add_index :stores, [:lat, :lng]
   end
 end

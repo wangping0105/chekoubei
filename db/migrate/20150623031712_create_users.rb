@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      t.integer :store_id, index: true
       t.string :phone, index: true
       t.string :name
       t.integer :sex
