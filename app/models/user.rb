@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   TEAVHER_URL = "/assets/guest.jpg"
 
+  validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
+
   def generate_authentication_token
     loop do
       self.authentication_token = User.encrypt(User.new_authentication_token)
