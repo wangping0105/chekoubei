@@ -45,7 +45,8 @@ gem 'active_model_serializers'
 gem 'rails_param'
 # 地理位置相关
 gem 'geocoder', '~> 1.2.12'
-
+# http
+gem 'httparty', '~> 0.13.7'
 group :development do
   gem 'pry-rails'
   gem 'pry-remote'

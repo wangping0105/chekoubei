@@ -101,6 +101,9 @@ GEM
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -123,6 +126,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -253,6 +257,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   emojimmy
   geocoder (~> 1.2.12)
+  httparty (~> 0.13.7)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
