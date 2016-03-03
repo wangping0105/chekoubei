@@ -66,6 +66,14 @@ group :development do
   gem 'capistrano-sidekiq'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'database_cleaner'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'guard'
+  gem 'guard-rspec', require: false
+end
+
 # Use unicorn as the app server
 group :production do
   gem 'unicorn'

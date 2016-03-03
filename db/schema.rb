@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20160226095902) do
   add_index "provinces", ["pinyin"], name: "index_provinces_on_pinyin", using: :btree
 
   create_table "sms_codes", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+    t.integer  "users_id",   limit: 4
     t.string   "phone",      limit: 255
     t.string   "code",       limit: 255
     t.integer  "sms_type",   limit: 4
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20160226095902) do
   end
 
   add_index "sms_codes", ["phone"], name: "index_sms_codes_on_phone", using: :btree
-  add_index "sms_codes", ["user_id"], name: "index_sms_codes_on_user_id", using: :btree
+  add_index "sms_codes", ["users_id"], name: "index_sms_codes_on_users_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
     t.string   "name",           limit: 255
