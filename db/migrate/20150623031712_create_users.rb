@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone, index: true
       t.string :name
       t.integer :sex
-      t.string :avatar
       t.string :authentication_token, index: true
       t.string :password_digest
       t.datetime :activated

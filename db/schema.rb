@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160226095902) do
   end
 
   create_table "attachments", force: :cascade do |t|
+    t.integer  "user_id",             limit: 4
     t.integer  "attachmentable_id",   limit: 4
     t.string   "attachmentable_type", limit: 255
     t.string   "name",                limit: 255
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160226095902) do
 
   add_index "attachments", ["attachmentable_id", "attachmentable_type"], name: "index_attachments_on_attachmentable_id_and_attachmentable_type", using: :btree
   add_index "attachments", ["qiniu_persistent_id"], name: "index_attachments_on_qiniu_persistent_id", using: :btree
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -169,7 +171,6 @@ ActiveRecord::Schema.define(version: 20160226095902) do
     t.string   "phone",                limit: 255
     t.string   "name",                 limit: 255
     t.integer  "sex",                  limit: 4
-    t.string   "avatar",               limit: 255
     t.string   "authentication_token", limit: 255
     t.string   "password_digest",      limit: 255
     t.datetime "activated"
