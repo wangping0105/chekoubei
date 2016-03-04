@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :store
   has_many :sms_codes
 
   before_create :generate_authentication_token
