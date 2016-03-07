@@ -19,3 +19,4 @@
 /config/*.yml
 /test
 /public/api_chekoubei_doc/
+/public/Attachments/*

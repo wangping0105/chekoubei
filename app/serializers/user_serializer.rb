@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :created_at, :name, :phone, :is_store_user
+  attributes :id, :created_at, :name, :phone, :is_store_user, :file_url
 
   #string型属性
   self.stringify_keys = [:created_at, :name, :phone]
@@ -13,5 +13,10 @@ class UserSerializer < ActiveModel::Serializer
 
   def is_store_user
     !object.store_id.nil?
+  end
+
+  def file_url
+    return User::TEAVHER_URL unless object.attachment
+    object.attachment.file_url
   end
 end

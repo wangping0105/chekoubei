@@ -5,7 +5,8 @@ class CreateStores < ActiveRecord::Migration
       t.string :pinyin, index: true
       t.string :short_name
       t.text :introduction
-      t.integer :category
+      t.integer :store_category_id, index: true
+      t.integer :brand_id, index: true
       t.integer :store_type
       t.string :business_hours
       t.integer :level

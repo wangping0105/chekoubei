@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226095902) do
+ActiveRecord::Schema.define(version: 20160307073719) do
 
   create_table "addresses", force: :cascade do |t|
     t.float    "lat",              limit: 24
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20160226095902) do
   add_index "attachments", ["attachmentable_id", "attachmentable_type"], name: "index_attachments_on_attachmentable_id_and_attachmentable_type", using: :btree
   add_index "attachments", ["qiniu_persistent_id"], name: "index_attachments_on_qiniu_persistent_id", using: :btree
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "pinyin",     limit: 255
+    t.integer  "parent_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "brands", ["name"], name: "index_brands_on_name", using: :btree
+  add_index "brands", ["parent_id"], name: "index_brands_on_parent_id", using: :btree
+  add_index "brands", ["pinyin"], name: "index_brands_on_pinyin", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -133,26 +145,41 @@ ActiveRecord::Schema.define(version: 20160226095902) do
   add_index "sms_codes", ["phone"], name: "index_sms_codes_on_phone", using: :btree
   add_index "sms_codes", ["users_id"], name: "index_sms_codes_on_users_id", using: :btree
 
-  create_table "stores", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.string   "pinyin",         limit: 255
-    t.string   "short_name",     limit: 255
-    t.text     "introduction",   limit: 65535
-    t.integer  "category",       limit: 4
-    t.integer  "store_type",     limit: 4
-    t.string   "business_hours", limit: 255
-    t.integer  "level",          limit: 4
-    t.integer  "order_count",    limit: 4
-    t.float    "lat",            limit: 24
-    t.float    "lng",            limit: 24
-    t.integer  "deleted_at",     limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+  create_table "store_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "pinyin",     limit: 255
+    t.integer  "parent_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  add_index "store_categories", ["name"], name: "index_store_categories_on_name", using: :btree
+  add_index "store_categories", ["parent_id"], name: "index_store_categories_on_parent_id", using: :btree
+  add_index "store_categories", ["pinyin"], name: "index_store_categories_on_pinyin", using: :btree
+
+  create_table "stores", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.string   "pinyin",            limit: 255
+    t.string   "short_name",        limit: 255
+    t.text     "introduction",      limit: 65535
+    t.integer  "store_category_id", limit: 4
+    t.integer  "brand_id",          limit: 4
+    t.integer  "store_type",        limit: 4
+    t.string   "business_hours",    limit: 255
+    t.integer  "level",             limit: 4
+    t.integer  "order_count",       limit: 4
+    t.float    "lat",               limit: 24
+    t.float    "lng",               limit: 24
+    t.integer  "deleted_at",        limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "stores", ["brand_id"], name: "index_stores_on_brand_id", using: :btree
   add_index "stores", ["lat", "lng"], name: "index_stores_on_lat_and_lng", using: :btree
   add_index "stores", ["name"], name: "index_stores_on_name", using: :btree
   add_index "stores", ["pinyin"], name: "index_stores_on_pinyin", using: :btree
+  add_index "stores", ["store_category_id"], name: "index_stores_on_store_category_id", using: :btree
 
   create_table "user_devices", force: :cascade do |t|
     t.string   "uid",          limit: 255

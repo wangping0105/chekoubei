@@ -54,9 +54,14 @@ name | 名称
 字段名 | 描述
 --------- | ------- | -----------
 name | 名称
+pinyin | 拼音
 parent_id
-position
-path
+
+# brands 品牌
+--------- | ------- | -----------
+name | 名称
+pinyin | 拼音
+parent_id
 
 # orders 订单表
 字段名 | 描述
