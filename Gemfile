@@ -46,6 +46,9 @@ gem 'rails_param'
 gem 'geocoder', '~> 1.2.12'
 # http
 gem 'httparty', '~> 0.13.7'
+# 拼音
+gem 'ruby-pinyin', '~> 0.4.7'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-remote'
