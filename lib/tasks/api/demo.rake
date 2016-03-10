@@ -8,8 +8,10 @@ namespace :demo do
   desc 'add store'
   task store: :environment do
     User.transaction do
-      brand = Brand.create(name: '大众')
-      store = Store.create(
+      brand = Brand.find_or_create_by(name: '大众')
+      store = Store.find_by(name: '金陵大众4s店')
+      unless store
+       store = Store.create(
         name: '金陵大众4s店',
         short_name: '金大众',
         introduction: '我擦擦',
@@ -18,8 +20,10 @@ namespace :demo do
         business_hours: ["8:00", "18:00"],
         level: 1
       )
-      user = User.create(phone: "15921076832", admin: true, name: '测试门店店长', password: '111111')
-      add_attachment(user)
+      end
+      user = User.find_by(phone: "15921076830")
+      # add_attachment(user)
+      add_attachment(store)
     end
   end
 
@@ -36,7 +40,7 @@ namespace :demo do
         note: 'image',
         sub_type: 'image'
       )
-      file_path = "#{Rails.root.to_s}/public/attachments/#{entity.class.name}/#{entity.id}"
+      file_path = "#{Rails.root.to_s}/public/Attachments/#{entity.class.name}/#{entity.id}"
       FileUtils.mkpath(file_path)
       FileUtils.cp("/home/wangping/Pictures/#{file_name}", file_path)
       puts "为#{entity.class}创建附件成功！"
