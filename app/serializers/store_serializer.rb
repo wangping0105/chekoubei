@@ -1,12 +1,12 @@
-class UserSerializer < ActiveModel::Serializer
+class StoreSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :name, :short_name, :introduction, :category, :store_type, :business_hours, :level, :order_count, :lat, :lng,
+  attributes :id, :name, :short_name, :introduction, :store_type, :store_type, :business_hours, :level, :order_count, :lat, :lng,
              :address, :image_attachments, :created_at
 
   #string型属性
-  self.stringify_keys = [:created_at, :name, :short_name, :introduction, :category, :store_type, :business_hours]
+  self.stringify_keys = [:created_at, :name, :short_name, :introduction, :store_type, :business_hours, :store_type]
   #integer型属性
   self.integerify_keys = [:id, :level, :order_count]
   #float型属性

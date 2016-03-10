@@ -17,4 +17,9 @@ class AttachmentSerializer < ActiveModel::Serializer
   def file_url
     object.file_url
   end
+
+  def user
+    return {} unless object.user
+    object.user
+  end
 end
