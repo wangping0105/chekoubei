@@ -22,13 +22,22 @@ namespace :demo do
     end
   end
 
+
   desc 'add store'
   task store: :environment do
     User.transaction do
       # store = Store.find_by(name: '金陵大众4s店')
-      (1..1000).each do |i|
+      province = Province.find_by(name: '上海')
+      deatil_addresses = [
+			"宝山区高境一村138号", "虹口区广中五村17号401室", "浦东新区亮秀路112号y1座", "宝山区逸仙路1688号"
+      ]
+      (1..100).each do |i|
         r_brand = rand(170)
         brand = Brand.all[r_brand]
+				
+        address = Address.create(province: province, detail_address: deatil_addresses[rand(deatil_addresses.size)])
+        address.convert_detail_address_to_lat_lng
+				
         store = Store.create(
           name: "#{i}号test#{brand.name}4s店",
           short_name: '金大众',
@@ -36,7 +45,10 @@ namespace :demo do
           brand_id: brand.id,
           store_type: '',
           business_hours: ["8:00", "18:00"],
-          level: 1
+          level: 1,
+          address: address,
+          lat: address.lat,
+          lng: address.lng
         )
         user = User.find_by(phone: "15921076830")
         add_attachment(store)
@@ -44,7 +56,7 @@ namespace :demo do
     end
   end
 
-  def add_attachment(entity, file_name= 'wp.jpg')
+  def add_attachment(entity, file_name= 'praise.png')
     if entity
       Attachment.create(
         user_id: entity.id,

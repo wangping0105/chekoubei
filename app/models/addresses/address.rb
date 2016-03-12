@@ -25,7 +25,7 @@ class Address < ActiveRecord::Base
         lon, lat = response['locations'].split(',')
         skip_save ? self.assign_attributes(lat: lat, lon: lon) : self.update(lat: lat, lon: lon)
       end
-    rescue
+    rescue        address.convert_detail_address_to_lat_lng
     end
   end
 
