@@ -71,7 +71,7 @@ namespace :demo do
       )
       file_path = "#{Rails.root.to_s}/public/Attachments/#{entity.class.name}/#{entity.id}"
       FileUtils.mkpath(file_path)
-      FileUtils.cp("/home/wangping/Pictures/#{file_name}", file_path)
+      FileUtils.cp("/home/wangping/图片/#{file_name}", file_path)
       puts "为#{entity.class}创建附件成功！"
     else
       puts "entity 不存在！"

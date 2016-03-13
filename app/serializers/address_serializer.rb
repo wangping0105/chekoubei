@@ -3,10 +3,8 @@ class AddressSerializer < ActiveModel::Serializer
 
   self.root = false
   attributes :id, :country, :province, :city,
-             :district, :tel, :phone, :email, :qq, :fax,
-             :wechat, :wangwang, :zip, :url, :detail_address,
-             :lat, :lng, :distance, :region_info, :off_distance,
-             :gaode_staticmap, :full_address
+             :district, :tel, :phone, :detail_address,
+             :lat, :lng, :distance
   #string型属性
   self.stringify_keys = [:tel, :phone, :email, :qq, :fax, :wechat, :wangwang, :zip, :url, :detail_address, :gaode_staticmap, :full_address]
 
