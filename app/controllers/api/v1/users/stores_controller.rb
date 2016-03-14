@@ -5,20 +5,38 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
     param! :lat, String, required: false
     param! :lng, String, required: false
 
-    @stores = Store.includes(:image_attachments, :address).page(params[:page]).per(params[:per_page])
-    @stores = filter_stores(@stores)
+    if params[:order] == "distance"
+      @stores = Address.includes(addressable: [:image_attachments, :address]).joins("left join stores s on s.id = addresses.addressable_id").
+        near([params[:lat].to_f, params[:lng].to_f], 65536, :order => "distance").
+        where(addressable_type: 'Store').page(params[:page]).per(params[:per_page])
 
-    render json: {
-      code: 0,
-      data: ActiveModel::ArraySerializer.new(@stores, each_serializer: StoreSerializer)
-    }
+      render json: {
+          code: 0,
+          data: @stores.map{|s|
+            s.addressable.distance = s.distance
+            StoreSerializer.new(s.addressable)
+          },
+          total_count: @stores.total_count,
+          per_page: (params[:per_page]).to_i,
+          page: (params[:page]).to_i
+        }
+    else
+      @stores = Store.includes(:image_attachments, :address).page(params[:page]).per(params[:per_page])
+      @stores = filter_stores(@stores)
+
+      render json: {
+        code: 0,
+        data: ActiveModel::ArraySerializer.new(@stores, each_serializer: StoreSerializer),
+        total_count: @stores.total_count,
+        per_page: (params[:per_page]).to_i,
+        page: (params[:page]).to_i
+      }
+    end
+
   end
 
   private
   def filter_stores(stores)
-    if params[:order] == "distance"
-      stores = stores.near([params[:lat].to_f, params[:lng].to_f], 65535, :order => "distance")
-    end
 
     stores
   end

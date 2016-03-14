@@ -1,7 +1,7 @@
 class StoreSerializer < ActiveModel::Serializer
   include NonullSerializerable
   extend Geocoder::Model::ActiveRecord unless defined? Rails::Railtie
-  
+
   self.root = false
   attributes :id, :name, :short_name, :introduction, :store_type, :store_type, :business_hours, :level, :order_count, :lat, :lng,
              :address, :image_attachments, :created_at, :distance

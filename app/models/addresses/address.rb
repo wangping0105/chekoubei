@@ -1,4 +1,7 @@
 class Address < ActiveRecord::Base
+  extend Geocoder::Model::ActiveRecord unless defined? Rails::Railtie
+  geocoded_by :detail_address, :latitude  => :lat, :longitude => :lng
+
   belongs_to :addressable, polymorphic: true
   belongs_to :country
   belongs_to :province
