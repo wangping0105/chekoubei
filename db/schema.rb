@@ -75,10 +75,12 @@ ActiveRecord::Schema.define(version: 20160307073719) do
     t.string   "name",       limit: 255
     t.string   "pinyin",     limit: 255
     t.integer  "parent_id",  limit: 4
+    t.integer  "brand_type", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+  add_index "brands", ["brand_type"], name: "index_brands_on_brand_type", using: :btree
   add_index "brands", ["name"], name: "index_brands_on_name", using: :btree
   add_index "brands", ["parent_id"], name: "index_brands_on_parent_id", using: :btree
   add_index "brands", ["pinyin"], name: "index_brands_on_pinyin", using: :btree

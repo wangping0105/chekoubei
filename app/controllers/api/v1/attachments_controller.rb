@@ -55,8 +55,4 @@ class Api::V1::AttachmentsController < Api::V1::BaseController
       data: attachments
     }
   end
-
-  def attachment_params
-    params_encoded(params)
-  end
 end

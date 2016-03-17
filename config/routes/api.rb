@@ -9,12 +9,13 @@ namespace :api, defaults: { format: :json } do
         end
       end
 
+      resources :store_categories
+      
       resources :stores, except: [:edit, :new] do
 
       end
 
     end
-
     resources :attachments
   end
 end

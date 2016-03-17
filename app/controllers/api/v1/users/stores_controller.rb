@@ -10,29 +10,23 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
         near([params[:lat].to_f, params[:lng].to_f], 65536, :order => "distance").
         where(addressable_type: 'Store').page(params[:page]).per(params[:per_page])
 
-      render json: {
-          code: 0,
-          data: @stores.map{|s|
-            s.addressable.distance = s.distance
-            StoreSerializer.new(s.addressable)
-          },
-          total_count: @stores.total_count,
-          per_page: (params[:per_page]).to_i,
-          page: (params[:page]).to_i
-        }
+      data = @stores.map{|s|
+        s.addressable.distance = s.distance
+        StoreSerializer.new(s.addressable)
+      }
     else
       @stores = Store.includes(:image_attachments, :address).page(params[:page]).per(params[:per_page])
       @stores = filter_stores(@stores)
-
-      render json: {
-        code: 0,
-        data: ActiveModel::ArraySerializer.new(@stores, each_serializer: StoreSerializer),
-        total_count: @stores.total_count,
-        per_page: (params[:per_page]).to_i,
-        page: (params[:page]).to_i
-      }
+      data = ActiveModel::ArraySerializer.new(@stores, each_serializer: StoreSerializer)
     end
 
+    render json: {
+      code: 0,
+      data: data,
+      total_count: @stores.total_count,
+      per_page: (params[:per_page]).to_i,
+      page: (params[:page]).to_i
+    }
   end
 
   private

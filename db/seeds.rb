@@ -9,4 +9,8 @@
 
 User.create(phone: "15921076830", admin: true, name: 'admin', password: 'chekoubei')
 
+%w(新车 二手车 车险 车贷 车抵押).each do |name|
+  StoreCategory.create(name: name)
+end
+
 puts '初始化成功！'
