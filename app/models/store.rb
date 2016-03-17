@@ -3,6 +3,9 @@ class Store < ActiveRecord::Base
   has_one :address, -> { order('id DESC') }, as: :addressable
   accepts_nested_attributes_for :address, update_only: true, allow_destroy: true
   has_many :attachments, as: :attachmentable
+  has_one :store_category_relation
+  has_one :store_category, through: :store_category_relation
+
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
   has_many :image_attachments, -> { where(sub_type: 'image') } , class_name: 'Attachment', as: :attachmentable

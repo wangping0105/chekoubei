@@ -18,6 +18,27 @@ introduction | 业务简介
 :lat | 纬度
 :lng | 经度
 
+# cars 车辆
+字段名 | 描述
+--------- | ------- | -----------
+user_id | 用户id
+brand_id | 车辆品牌id
+model_no | 型号
+color| 11
+distance | 111
+on_time | 上牌时间
+description | 描述 text
+car_type | 新车 二手车
+
+# store_cars
+字段名 | 描述
+--------- | ------- | -----------
+store_id | 1
+car_id | 1
+prices | 价格
+status | 状态 卖光了,未出售
+
+
 #= store_users 商户账户
 字段名 | 描述
 --------- | ------- | -----------

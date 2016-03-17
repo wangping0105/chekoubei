@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307073719) do
+ActiveRecord::Schema.define(version: 20160317134623) do
 
   create_table "addresses", force: :cascade do |t|
     t.float    "lat",              limit: 24
@@ -158,6 +158,16 @@ ActiveRecord::Schema.define(version: 20160307073719) do
   add_index "store_categories", ["name"], name: "index_store_categories_on_name", using: :btree
   add_index "store_categories", ["parent_id"], name: "index_store_categories_on_parent_id", using: :btree
   add_index "store_categories", ["pinyin"], name: "index_store_categories_on_pinyin", using: :btree
+
+  create_table "store_category_relations", force: :cascade do |t|
+    t.integer  "store_id",          limit: 4
+    t.integer  "store_category_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "store_category_relations", ["store_category_id"], name: "index_store_category_relations_on_store_category_id", using: :btree
+  add_index "store_category_relations", ["store_id"], name: "index_store_category_relations_on_store_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
     t.string   "name",              limit: 255

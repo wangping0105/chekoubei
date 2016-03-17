@@ -31,7 +31,7 @@ namespace :demo do
       deatil_addresses = [
 			"宝山区高境一村138号", "虹口区广中五村17号401室", "浦东新区亮秀路112号y1座", "宝山区逸仙路1688号"
       ]
-      (1..100).each do |i|
+      (1..10).each do |i|
         r_brand = rand(170)
         brand = Brand.all[r_brand]
 
@@ -56,7 +56,7 @@ namespace :demo do
     end
   end
 
-  def add_attachment(entity, file_name= 'wp.jpg')
+  def add_attachment(entity, file_name= 'demo.png')
     if entity
       Attachment.create(
         user_id: entity.id,
@@ -71,7 +71,7 @@ namespace :demo do
       )
       file_path = "#{Rails.root.to_s}/public/Attachments/#{entity.class.name}/#{entity.id}"
       FileUtils.mkpath(file_path)
-      FileUtils.cp("/home/wangping/Pictures/#{file_name}", file_path)
+      FileUtils.cp("#{Rails.root.to_s}/app/assets/images/#{file_name}", file_path)
       puts "为#{entity.class}创建附件成功！"
     else
       puts "entity 不存在！"
