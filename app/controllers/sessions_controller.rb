@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   layout 'layouts/sessions'
   def index
+    @page_title = '车口碑'
     @user = User.new
   end
 

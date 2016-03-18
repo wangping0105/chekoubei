@@ -34,6 +34,10 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
     }
   end
 
+  def create
+
+  end
+
   private
   def filter_stores(stores)
 

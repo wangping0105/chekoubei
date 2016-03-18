@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - user/auth
+  - user/stores
   - errors
 
 search: true
