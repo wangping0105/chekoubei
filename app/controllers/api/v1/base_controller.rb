@@ -1,4 +1,4 @@
-class Api::V1::BaseController < ActionController::Base
+class Api::V1::BaseController < ApplicationController #ActionController::Base
   include Api::IkDeviceDetectable
   include Api::IkParamsProcessable
   include Api::IkAuthenticateable
