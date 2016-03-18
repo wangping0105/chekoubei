@@ -5,7 +5,10 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  mount RuCaptcha::Engine => "/rucaptcha"
   draw :api
 
-  root "home#index"
+  root "sessions#index"
+  resources :sessions
+  resources :home
 end

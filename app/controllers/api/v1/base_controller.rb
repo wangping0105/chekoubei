@@ -1,4 +1,4 @@
-class Api::V1::BaseController < ActionController::API
+class Api::V1::BaseController < ActionController::Base
   include Api::IkDeviceDetectable
   include Api::IkParamsProcessable
   include Api::IkAuthenticateable
@@ -6,6 +6,8 @@ class Api::V1::BaseController < ActionController::API
 
   helper_method :current_user
   before_action :authenticate!
+
+  respond_to :json
 
   protected
 

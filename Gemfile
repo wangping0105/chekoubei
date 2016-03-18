@@ -3,7 +3,7 @@ source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-gem 'rails-api'
+# gem 'rails-api'
 # Use mysql2 as the database for Active Record
 gem 'mysql2', '0.3.20'
 # Use SCSS for stylesheets
@@ -48,6 +48,8 @@ gem 'geocoder', '~> 1.2.12'
 gem 'httparty', '~> 0.13.7'
 # 拼音
 gem 'ruby-pinyin', '~> 0.4.7'
+# 图形验证码
+gem 'rucaptcha'
 
 group :development do
   gem 'pry-rails'
