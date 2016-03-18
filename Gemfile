@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-# source 'https://ruby.taobao.org'
+# source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -50,6 +50,8 @@ gem 'httparty', '~> 0.13.7'
 gem 'ruby-pinyin', '~> 0.4.7'
 # 图形验证码
 gem 'rucaptcha'
+# res
+gem 'responders', '~> 2.0'
 
 group :development do
   gem 'pry-rails'
