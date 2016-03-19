@@ -33,10 +33,12 @@ car_type | 新车 二手车
 # store_cars
 字段名 | 描述
 --------- | ------- | -----------
+title | 标题
 store_id | 1
 car_id | 1
 prices | 价格
-status | 状态 卖光了,未出售
+status | 状态 卖了, 待出售
+top | false/true
 
 
 #= store_users 商户账户

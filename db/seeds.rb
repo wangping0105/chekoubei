@@ -38,6 +38,7 @@ User.transaction do
     )
     st.store_category_relations.create(store: store)
     u = User.create(phone: "15921076830", admin: true, name: 'admin', password: 'chekoubei', store_id: store.id)
+    Car.create(brand_id: Brand.first.id, user_id: User.first.id, model_no: 'test型号', color: '绿色', distance: 150000, on_time: Date.new("2015-11-11"), description:'11111', car_type: 0)
 
     puts '初始化成功！'
   end

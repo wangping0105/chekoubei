@@ -6,6 +6,11 @@ module Api::IkParamsProcessable
     params[:per_page] ||= Kaminari.config.default_per_page
   end
 
+  def filter_page(relation)
+    relation = relation.page(params[:page]).per(params[:per_page])
+    relation
+  end
+
   def render_json_data(data)
     render json: { code: 0, data: data }
   end

@@ -14,7 +14,9 @@ namespace :api, defaults: { format: :json } do
       resources :stores, except: [:edit, :new] do
 
       end
+      resources :cars, except: [:edit, :new] do
 
+      end
     end
     resources :attachments
   end

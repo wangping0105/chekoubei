@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317134623) do
+ActiveRecord::Schema.define(version: 20160319125431) do
 
   create_table "addresses", force: :cascade do |t|
     t.float    "lat",              limit: 24
@@ -85,6 +85,22 @@ ActiveRecord::Schema.define(version: 20160317134623) do
   add_index "brands", ["parent_id"], name: "index_brands_on_parent_id", using: :btree
   add_index "brands", ["pinyin"], name: "index_brands_on_pinyin", using: :btree
 
+  create_table "cars", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "brand_id",    limit: 4
+    t.string   "model_no",    limit: 255
+    t.string   "color",       limit: 255
+    t.float    "distance",    limit: 24
+    t.date     "on_time"
+    t.text     "description", limit: 65535
+    t.integer  "car_type",    limit: 4,     default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "cars", ["brand_id"], name: "index_cars_on_brand_id", using: :btree
+  add_index "cars", ["user_id"], name: "index_cars_on_user_id", using: :btree
+
   create_table "cities", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "pinyin",      limit: 255
@@ -126,9 +142,9 @@ ActiveRecord::Schema.define(version: 20160317134623) do
     t.string   "name",       limit: 255
     t.string   "pinyin",     limit: 255
     t.integer  "sort",       limit: 4
-    t.integer  "country_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id", limit: 4
   end
 
   add_index "provinces", ["country_id"], name: "index_provinces_on_country_id", using: :btree
@@ -146,6 +162,20 @@ ActiveRecord::Schema.define(version: 20160317134623) do
 
   add_index "sms_codes", ["phone"], name: "index_sms_codes_on_phone", using: :btree
   add_index "sms_codes", ["users_id"], name: "index_sms_codes_on_users_id", using: :btree
+
+  create_table "store_cars", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.integer  "store_id",   limit: 4
+    t.integer  "car_id",     limit: 4
+    t.float    "prices",     limit: 24
+    t.integer  "status",     limit: 4,   default: 0
+    t.boolean  "top",                    default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "store_cars", ["car_id"], name: "index_store_cars_on_car_id", using: :btree
+  add_index "store_cars", ["store_id"], name: "index_store_cars_on_store_id", using: :btree
 
   create_table "store_categories", force: :cascade do |t|
     t.string   "name",       limit: 255

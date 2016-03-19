@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :store
   has_many :sms_codes
+  has_many :cars
   has_one :attachment, as: :attachmentable
 
   before_create :generate_authentication_token

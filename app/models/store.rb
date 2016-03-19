@@ -5,6 +5,8 @@ class Store < ActiveRecord::Base
   has_many :attachments, as: :attachmentable
   has_one :store_category_relation
   has_one :store_category, through: :store_category_relation
+  has_many :store_cars
+  has_many :cars, through: :store_cars
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
