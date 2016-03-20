@@ -1,1 +1,52 @@
-hello world!
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h1 class="page-header">首页</h1>
+
+  <div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>标签</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>标签</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>标签</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>标签</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+  </div>
+
+  <h2 class="sub-header">所有的品牌</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>名称</th>
+        <th>门店数量</th>
+        <th>首字母</th>
+        <th>~~</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%Brand.order(pinyin: :asc).each_with_index do |b, i|  %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= b.name %></td>
+            <td><%= b.stores_count.to_i %></td>
+            <td><%= b.pinyin[0].upcase %></td>
+            <td>~~</td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+  </div>
+</div>

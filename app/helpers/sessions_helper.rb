@@ -61,7 +61,7 @@ module SessionsHelper
   def authenticate_user!
     unless signed_in?
       flash[:error] = "您无访问权限，请先登录！"
-      path = (cookies[:return_to] || root_path)
+      path = (sessions_path) #cookies[:return_to] ||
       redirect_to path
     end
   end

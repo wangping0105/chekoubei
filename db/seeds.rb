@@ -14,6 +14,7 @@ User.transaction do
     Store.all.delete_all
     StoreCar.all.delete_all
     Car.all.delete_all
+    Brand.all.delete_all
 
     %w(新车 二手车 车险 车贷 车抵押).each do |name|
       StoreCategory.create(name: name)
@@ -55,7 +56,7 @@ User.transaction do
     )
     st.store_category_relations.create(store: store)
 
-    user = User.create(phone: "15921076830", admin: true, name: 'admin', password: 'chekoubei', store_id: store.id)
+    user = User.create(phone: "15921076830", admin: true, name: 'admin', password: '111111', store_id: store.id)
     add_attachment(user)
 
     car = Car.create(brand_id: Brand.first.id, user_id: User.first.id, model_no: 'test型号', color: '绿色', distance: 150000, on_time: "2015-11-11", description:'11111', car_type: 0)

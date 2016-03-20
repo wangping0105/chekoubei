@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meijia</title>
+  <title>车口碑</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'shared/navbar' %>
 
-<%= yield %>
+<div class="container-fluid">
+  <row>
+    <%= render 'shared/sidebar' %>
+    <%= yield %>
+  </row>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script>
+  (function () {
+    'use strict';
 
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement('style')
+      msViewportStyle.appendChild(
+          document.createTextNode(
+              '@-ms-viewport{width:auto!important}'
+          )
+      )
+      document.querySelector('head').appendChild(msViewportStyle)
+    }
+
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement('style')
+      msViewportStyle.appendChild(
+          document.createTextNode(
+              '@-ms-viewport{width:auto!important}'
+          )
+      )
+      document.querySelector('head').appendChild(msViewportStyle)
+    }
+  })();
+</script>
 </body>
 </html>
