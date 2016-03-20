@@ -1,10 +1,11 @@
 class AttachmentSerializer < ActiveModel::Serializer
   include NonullSerializerable
-  attributes :id, :file_url, :name, :file_name, :file_content_type, :file_size, :user, :attachmentable_id, :attachmentable_type, :upload_time
+  attributes :id, :file_url, :name, :file_file_name, :file_content_type,
+             :file_file_size, :user_name, :attachmentable_id, :attachmentable_type, :upload_time
 
   self.root = false
   #string型属性
-  self.stringify_keys = [:file_url, :name, :file_name, :file_content_type, :attachmentable_type]
+  self.stringify_keys = [:file_url, :name, :file_file_name, :file_content_type, :attachmentable_type]
   #integer型属性
   self.integerify_keys = [:id, :file_size, :attachmentable_id ]
   #float型属性
@@ -18,8 +19,7 @@ class AttachmentSerializer < ActiveModel::Serializer
     object.file_url
   end
 
-  def user
-    return {} unless object.user
-    object.user
+  def user_name
+    object.user.try(:name).to_s
   end
 end

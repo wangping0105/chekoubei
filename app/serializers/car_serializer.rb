@@ -21,7 +21,7 @@ class CarSerializer < ActiveModel::Serializer
 
   def attachments
     _attachments = object.attachments
-    return [] unless _attachments.blank?
+    return [] if _attachments.blank?
     ActiveModel::ArraySerializer.new(_attachments, each_serializer: AttachmentSerializer)
   end
 end

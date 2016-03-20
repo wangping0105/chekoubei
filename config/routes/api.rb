@@ -20,6 +20,10 @@ namespace :api, defaults: { format: :json } do
       resources :cars, except: [:edit, :new] do
       end
     end
-    resources :attachments
+    resources :attachments do
+      collection do
+        post :upload
+      end
+    end
   end
 end

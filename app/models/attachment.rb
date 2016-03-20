@@ -1,6 +1,6 @@
 class Attachment < ActiveRecord::Base
   belongs_to :attachmentable, polymorphic: true
-  belongs_to :user, polymorphic: true
+  belongs_to :user
 
   has_attached_file :file, :path => ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename"
   validates_attachment :file, content_type: { content_type: /.*/ }, :size => { :in => 0..20.megabytes }

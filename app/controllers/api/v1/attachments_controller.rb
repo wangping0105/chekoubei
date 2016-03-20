@@ -28,7 +28,7 @@ class Api::V1::AttachmentsController < Api::V1::BaseController
     attachment = Attachment.create(file: tempfile, user: current_user)
     {
       code: 0,
-      data: attachment
+      data: AttachmentSerializer.new(attachment)
     }
   end
 
