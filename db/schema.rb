@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20160319125431) do
     t.integer  "attachmentable_id",   limit: 4
     t.string   "attachmentable_type", limit: 255
     t.string   "name",                limit: 255
-    t.string   "file_name",           limit: 255
+    t.string   "file_file_name",      limit: 255
     t.string   "file_content_type",   limit: 255
-    t.integer  "file_size",           limit: 4
+    t.integer  "file_file_size",      limit: 4
     t.datetime "file_updated_at"
     t.datetime "deleted_at"
     t.text     "note",                limit: 65535
@@ -72,15 +72,15 @@ ActiveRecord::Schema.define(version: 20160319125431) do
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "pinyin",     limit: 255
-    t.integer  "parent_id",  limit: 4
-    t.integer  "brand_type", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",         limit: 255
+    t.string   "pinyin",       limit: 255
+    t.integer  "parent_id",    limit: 4
+    t.integer  "stores_count", limit: 4
+    t.integer  "brand_type",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "brands", ["brand_type"], name: "index_brands_on_brand_type", using: :btree
   add_index "brands", ["name"], name: "index_brands_on_name", using: :btree
   add_index "brands", ["parent_id"], name: "index_brands_on_parent_id", using: :btree
   add_index "brands", ["pinyin"], name: "index_brands_on_pinyin", using: :btree
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 20160319125431) do
     t.string   "name",       limit: 255
     t.string   "pinyin",     limit: 255
     t.integer  "sort",       limit: 4
+    t.integer  "country_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "country_id", limit: 4
   end
 
   add_index "provinces", ["country_id"], name: "index_provinces_on_country_id", using: :btree

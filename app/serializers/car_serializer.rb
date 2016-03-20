@@ -2,7 +2,7 @@ class CarSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :brand_id, :brand_name, :model_no, :color, :distance, :on_time, :description, :car_type
+  attributes :id, :brand_id, :brand_name, :model_no, :color, :distance, :on_time, :description, :car_type, :attachments
 
   #string型属性
   self.stringify_keys = [:model_no, :color, :distance, :description]
@@ -17,5 +17,11 @@ class CarSerializer < ActiveModel::Serializer
 
   def on_time
     object.on_time.to_s
+  end
+
+  def attachments
+    _attachments = object.attachments
+    return [] unless _attachments.blank?
+    ActiveModel::ArraySerializer.new(_attachments, each_serializer: AttachmentSerializer)
   end
 end

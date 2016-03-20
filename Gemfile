@@ -52,7 +52,8 @@ gem 'ruby-pinyin', '~> 0.4.7'
 gem 'rucaptcha'
 # res
 gem 'responders', '~> 2.0'
-
+#
+gem "paperclip"
 group :development do
   gem 'pry-rails'
   gem 'pry-remote'

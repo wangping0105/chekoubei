@@ -12,6 +12,8 @@ class Store < ActiveRecord::Base
 
   has_many :image_attachments, -> { where(sub_type: 'image') } , class_name: 'Attachment', as: :attachmentable
 
+  belongs_to :brand, counter_cache: true
+
   enum store_types: {weixiu: 0, kuaixiu: 1}
 
   serialize :business_hours

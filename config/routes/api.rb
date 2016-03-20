@@ -12,10 +12,12 @@ namespace :api, defaults: { format: :json } do
       resources :store_categories
       
       resources :stores, except: [:edit, :new] do
-
+        member do
+          post :store_cars
+          get :store_car
+        end
       end
       resources :cars, except: [:edit, :new] do
-
       end
     end
     resources :attachments

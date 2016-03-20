@@ -5,9 +5,9 @@ class CreateAttachments < ActiveRecord::Migration
       t.integer  :attachmentable_id
       t.string   :attachmentable_type
       t.string   :name
-      t.string   :file_name
+      t.string   :file_file_name
       t.string   :file_content_type
-      t.integer  :file_size
+      t.integer  :file_file_size
       t.datetime :file_updated_at
       t.datetime :deleted_at
       t.text     :note

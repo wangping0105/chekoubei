@@ -56,22 +56,16 @@ namespace :demo do
     end
   end
 
-  def add_attachment(entity, file_name= 'demo.png')
+  def add_attachment(entity, file_path= "#{Rails.root.to_s}/app/assets/images/demo.jpg")
     if entity
+      file = File.new(file_path)
       Attachment.create(
-        user_id: entity.id,
-        attachmentable: entity,
-        name: file_name,
-        file_name: file_name,
-        file_content_type: 'image/jpeg',
-        file_size: 1212,
-        file_updated_at: Time.now,
-        note: 'image',
-        sub_type: 'image'
+          file: file,
+          user_id: entity.id,
+          attachmentable: entity,
+          note: 'image',
+          sub_type: 'image'
       )
-      file_path = "#{Rails.root.to_s}/public/Attachments/#{entity.class.name}/#{entity.id}"
-      FileUtils.mkpath(file_path)
-      FileUtils.cp("#{Rails.root.to_s}/app/assets/images/#{file_name}", file_path)
       puts "为#{entity.class}创建附件成功！"
     else
       puts "entity 不存在！"

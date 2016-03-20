@@ -1,5 +1,6 @@
 class Api::V1::Users::StoresController < Api::V1::BaseController
   before_action :set_default_page_params, only: [ :index]
+  before_action :set_store, only: [:store_car, :store_cars, :show]
 
   def index
     param! :lat, String, required: false
@@ -38,9 +39,37 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
 
   end
 
+  # post
+  # 创建
+  def store_cars
+    param! :car_id, Integer, required: true
+    param! :title, String, required: true
+    param! :prices, Float, required: true
+
+    car = Car.find params[:car_id]
+    @store_car = @store.store_cars.find_or_initialize_by(car_id: car.id)
+
+    @store_car.assign_attributes(title: params[:title], prices: params[:prices])
+    if @store_car.save
+      render json:{code: 0, data:  StoreCarSerializer.new(@store_car)}
+    else
+      raise EntityValidationError.new(@store_car)
+    end
+  end
+
+  # get show
+  def store_car
+    @store_car = @store.store_cars.find(params[:store_car_id])
+
+    render json:{code: 0, data: StoreCarSerializer.new(@store_car)}
+  end
   private
   def filter_stores(stores)
 
     stores
+  end
+
+  def set_store
+    @store = Store.find params[:id]
   end
 end
