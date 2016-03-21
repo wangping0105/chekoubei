@@ -1,0 +1,40 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header">门店列表</h2>
+  <div class="table-responsive" ng-controller="home">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>门店名</th>
+        <th>品牌</th>
+        <th>门店类型</th>
+        <th>门店等级</th>
+        <th>区</th>
+        <th>地址</th>
+        <th>图片</th>
+        <th>介绍</th>
+        <th>营业时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%@stores.each_with_index do |store, i|  %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= store.name %></td>
+            <td><%= store.brand.try(:name).to_s %></td>
+            <td><%= store.store_category.name%></td>
+            <td><%= store.level.to_i %></td>
+            <td><%= store.address.try(:district).try(:name)%></td>
+            <td><%= store.address.try(:detail_address)%></td>
+            <td><img width="100" src="<%= store.attachments.first.try(:file_url)%>" ></td>
+            <td><%= store.introduction%></td>
+            <td><%= store.business_hours.first%>~<%= store.business_hours.last%></td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+    <%= paginate @stores %>
+  </div>
+</div>
+
+

@@ -2,7 +2,7 @@ class StoreSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :name, :short_name, :introduction, :store_type, :store_type, :business_hours, :level, :order_count,
+  attributes :id, :name, :short_name, :introduction, :brand_name, :store_type, :business_hours, :level, :order_count,
              :address, :image_attachments, :created_at, :distance
 
   #string型属性
@@ -11,6 +11,10 @@ class StoreSerializer < ActiveModel::Serializer
   self.integerify_keys = [:id, :level, :order_count]
   #float型属性
   self.floatify_keys = []
+
+  def brand_name
+    object.brand.try(:name).to_s
+  end
 
   def address
     return {} unless object.address

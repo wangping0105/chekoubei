@@ -1,5 +1,5 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
-  <h2 class="sub-header">所有的品牌</h2>
+  <h2 class="sub-header">车辆列表</h2>
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
       <thead>
@@ -11,6 +11,8 @@
         <th>里程</th>
         <th>上牌时间</th>
         <th>图片</th>
+        <th>所属用户</th>
+        <th>所属门店</th>
       </tr>
       </thead>
       <tbody>
@@ -23,6 +25,8 @@
             <td><%= car.distance.to_i/1000 %>km</td>
             <td><%= car.on_time%></td>
             <td><img width="100" src="<%= car.attachments.first.try(:file_url)%>" ></td>
+            <td><%= "#{car.user.name}(#{car.user.phone})"%></td>
+            <td><%= "#{car.store.name || "暂无门店"}"%></td>
           </tr>
       <%end %>
       </tbody>

@@ -2,7 +2,7 @@ class Api::V1::Users::CarsController < Api::V1::BaseController
   before_action :set_default_page_params, only: [ :index]
 
   def index
-    @cars = Car.all
+    @cars = Car.includes(:user, :attachments, :store)
     @cars = filter_page(@cars)
 
     render json:{code: 0, data: ActiveModel::ArraySerializer.new(@cars, each_serializer: CarSerializer)}
