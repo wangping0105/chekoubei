@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
   <h1 class="page-header">首页</h1>
 
   <div class="row placeholders">
@@ -25,7 +25,7 @@
   </div>
 
   <h2 class="sub-header">所有的品牌</h2>
-  <div class="table-responsive">
+  <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -33,7 +33,7 @@
         <th>名称</th>
         <th>门店数量</th>
         <th>首字母</th>
-        <th>~~</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -49,4 +49,39 @@
       </tbody>
     </table>
   </div>
+
+  <!-- angular js 示例-->
+  <!--<div class="table-responsive" ng-controller="home">-->
+    <!--<table class="table table-striped">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th>#</th>-->
+        <!--<th>名称</th>-->
+        <!--<th>门店数量</th>-->
+        <!--<th>首字母</th>-->
+        <!--<th>~~</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr ng-repeat="c in brands">-->
+        <!--<td>{{c.id}}</td>-->
+        <!--<td>{{c.name}}</td>-->
+        <!--<td>{{c.stores_count}}</td>-->
+        <!--<td>{{c.pinyin}}</td>-->
+        <!--<td>~~</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
+  <script>
+  //  var app = angular.module('cheKouBei', []);
+  //  app.controller('home', function($scope, $http) {
+  //    $http.get("/api/v1/users/cars/brands?store_car_id=4&user_token=<%= current_user.authentication_token %>").then(function (response) {
+  //      $scope.brands = response.data.data;
+  //    });
+  //  });
+  </script>
+
 </div>
+
+

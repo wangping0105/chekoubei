@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     if verify_rucaptcha?(@user)
-      @user = User.find_by(phone: user_params[:phone])
+      @user = User.has_store.find_by(phone: user_params[:phone])
       if @user && @user.authenticate(user_params[:password])
         sign_in(@user)
         flash[:success] = '登录成功'

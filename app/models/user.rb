@@ -10,8 +10,11 @@ class User < ActiveRecord::Base
   acts_as_paranoid
 
   TEAVHER_URL = "/assets/guest.jpg"
+  enum :role => {nomal: 0, store_admin: 1, super_admin: 2}
 
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
+
+  scope :has_store, ->(){where.not(store_id: nil)}
 
   def generate_authentication_token
     loop do
@@ -25,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    if self.admin
+    if role == 'super_admin'
       return true
     end
     false

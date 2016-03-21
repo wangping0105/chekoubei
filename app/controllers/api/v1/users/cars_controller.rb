@@ -23,7 +23,7 @@ class Api::V1::Users::CarsController < Api::V1::BaseController
   def brands
     @brands = Brand.car_brand.order(pinyin: :asc)
 
-    render json:{code: 0, data: @brands.map{|b| {id: b.id, name: b.name}}}
+    render json:{code: 0, data: @brands.map{|b| { id: b.id, name: b.name, stores_count: (b.stores_count||0), pinyin: b.pinyin.upcase[0] }}}
   end
   private
   def car_params

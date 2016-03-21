@@ -11,12 +11,9 @@ class CreateStores < ActiveRecord::Migration
       t.string :business_hours
       t.integer :level
       t.integer :order_count
-      t.float    :lat
-      t.float    :lng
       t.integer :deleted_at
 
       t.timestamps null: false
     end
-    add_index :stores, [:lat, :lng]
   end
 end

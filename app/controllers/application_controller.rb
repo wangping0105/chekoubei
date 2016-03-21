@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
     relation = relation.page(params[:page]).per(params[:per_page])
     relation
   end
+
+  def is_super_admin?
+    unless current_user && current_user.admin?
+      flash[:error] = "你无权访问!"
+      redirect_to store_path(current_store)
+    end
+  end
 end

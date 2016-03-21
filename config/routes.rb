@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   root "home#index"
   resources :sessions
   resources :home
+  resources :cars
+  resources :stores
 end

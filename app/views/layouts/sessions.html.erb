@@ -8,15 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top">
-  <div id= "notice">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
-  </div>
-</nav>
+<%= render 'shared/flash_area' %>
 <%= yield %>
 
 </body>

@@ -22,12 +22,12 @@ module SessionsHelper
     @current_user
   end
 
-  def current_author
+  def current_store
     if current_user.present?
-      return Author.create(user_id: current_user.id, name: current_user.name) unless current_user.author.present?
-      @current_author ||= current_user.author
+      @current_user ||= current_user.store
     else
-      nil
+      render 'no_auth.html'
+      return
     end
   end
 

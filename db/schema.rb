@@ -210,15 +210,12 @@ ActiveRecord::Schema.define(version: 20160319125431) do
     t.string   "business_hours",    limit: 255
     t.integer  "level",             limit: 4
     t.integer  "order_count",       limit: 4
-    t.float    "lat",               limit: 24
-    t.float    "lng",               limit: 24
     t.integer  "deleted_at",        limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
 
   add_index "stores", ["brand_id"], name: "index_stores_on_brand_id", using: :btree
-  add_index "stores", ["lat", "lng"], name: "index_stores_on_lat_and_lng", using: :btree
   add_index "stores", ["name"], name: "index_stores_on_name", using: :btree
   add_index "stores", ["pinyin"], name: "index_stores_on_pinyin", using: :btree
   add_index "stores", ["store_category_id"], name: "index_stores_on_store_category_id", using: :btree
@@ -243,10 +240,10 @@ ActiveRecord::Schema.define(version: 20160319125431) do
     t.string   "authentication_token", limit: 255
     t.string   "password_digest",      limit: 255
     t.datetime "activated"
-    t.boolean  "admin",                            default: false
+    t.integer  "role",                 limit: 4,   default: 0
     t.integer  "deleted_at",           limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree

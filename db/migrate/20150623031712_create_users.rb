@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :authentication_token, index: true
       t.string :password_digest
       t.datetime :activated
-      t.boolean :admin, default: false
+      t.integer :role, default: 0
       t.integer :deleted_at
 
       t.timestamps null: false

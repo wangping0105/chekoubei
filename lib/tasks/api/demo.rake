@@ -5,6 +5,13 @@ namespace :demo do
     add_attachment(user)
   end
 
+  desc 'add 2 users'
+  task users: :environment do
+    store = Store.first
+    User.create(phone: "15921076831", role: User.roles[:store_admin], name: 'admin', password: '111111', store_id: store.id)
+    User.create(phone: "15921076832", name: 'admin', password: '111111', store_id: store.id)
+  end
+
   desc 'brand '
   task brand: :environment do
     [
