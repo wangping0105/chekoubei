@@ -14,10 +14,13 @@ namespace :api, defaults: { format: :json } do
       resources :stores, except: [:edit, :new] do
         member do
           post :store_cars
-          get :store_car
+          get :store_car, :store_car_list
         end
       end
       resources :cars, except: [:edit, :new] do
+        collection do
+          get :brands
+        end
       end
     end
     resources :attachments do

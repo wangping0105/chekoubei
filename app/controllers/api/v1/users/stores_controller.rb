@@ -1,6 +1,6 @@
 class Api::V1::Users::StoresController < Api::V1::BaseController
-  before_action :set_default_page_params, only: [ :index]
-  before_action :set_store, only: [:store_car, :store_cars, :show]
+  before_action :set_default_page_params, only: [:index, :store_car_list]
+  before_action :set_store, only: [:store_car, :store_cars, :show, :store_car_list]
 
   def index
     param! :lat, String, required: false
@@ -37,6 +37,13 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
 
   def create
 
+  end
+
+  def store_car_list
+    @store_cars = @store.store_cars
+    @store_cars = filter_page(@store_cars)
+
+    render json:{code: 0, data: ActiveModel::ArraySerializer.new(@store_cars, each_serializer: StoreCarSerializer)}
   end
 
   # post
