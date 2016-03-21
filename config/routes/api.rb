@@ -5,6 +5,7 @@ namespace :api, defaults: { format: :json } do
       resources :auth, only: [] do
         collection do
           post :login, :logout, :code_login, :sign_up
+          put :change_password
           get :ping, :send_verification_code
         end
       end

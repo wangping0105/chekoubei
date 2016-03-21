@@ -15,15 +15,15 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
 
   # 发送验证码
   def send_verification_code
-    param! :sms_type, String, required: true, in: ['signup']
+    param! :sms_type, String, required: true, in: ['sign_up', 'change_pwd']
     param! :phone, String, required: true
 
     code, phone = random_verification_code(6), params[:phone]
 
-    sms = SmsCode.find_or_create_by(sms_type: params[:sms_type], phone: phone)
+    sms = SmsCode.find_or_create_by(sms_type: SmsCode.sms_types[params[:sms_type]], phone: phone)
     sms.code = code
     if sms.save
-      result = Alidayu::Sms.send_code_for_sign_up(code, phone)
+      result = Alidayu::Sms.send("send_code_for_#{params[:sms_type]}", code, phone)
       if result['error_response'].present?
         render json: { code: -1,  message: result['error_response']['sub_msg'] }
       else
@@ -42,7 +42,7 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
 
     code, phone = params[:code], params[:phone]
 
-    sms = SmsCode.find_by(sms_type: SmsCode.sms_types[:signup], phone: phone, code: code)
+    sms = SmsCode.find_by(sms_type: SmsCode.sms_types[:sign_up], phone: phone, code: code)
     if sms && sms.updated_at - 5.minute <= Time.now
       User.transaction do
         unless User.find_by(phone: phone)
@@ -51,6 +51,21 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
           raise SignupInvalidPhoneError.new("该手机号已经存在")
         end
       end
+    else
+      raise SignupInvalidCaptchaError.new("验证码过期或无效")
+    end
+  end
+
+  def change_password
+    param! :phone, String, required: true
+    param! :code, String, required: true
+    param! :password, String, required: true
+
+    code, phone = params[:code], params[:phone]
+    sms = SmsCode.find_by(sms_type: SmsCode.sms_types[:change_pwd], phone: phone, code: code)
+    if sms && sms.updated_at - 5.minute <= Time.now
+        @user=  User.find_by(phone: phone)
+        @user.update(password: params[:password])
     else
       raise SignupInvalidCaptchaError.new("验证码过期或无效")
     end

@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.datetime :activated
       t.integer :role, default: 0
+      t.integer :identify, default: 0
       t.integer :deleted_at
 
       t.timestamps null: false
