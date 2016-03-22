@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :store
+  has_many :auth_applies
+  has_many :user_tags
+  has_many :tags, through: :user_tags
+
   has_many :sms_codes
   has_many :cars
   has_one :attachment, as: :attachmentable

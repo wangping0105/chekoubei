@@ -23,6 +23,12 @@ namespace :api, defaults: { format: :json } do
           get :brands
         end
       end
+
+      resources :users do
+        collection do
+          post :auth_apply
+        end
+      end
     end
     resources :attachments do
       collection do

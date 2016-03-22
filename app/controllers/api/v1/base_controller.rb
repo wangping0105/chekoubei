@@ -15,4 +15,10 @@ class Api::V1::BaseController < ActionController::Base
     params[:page] ||= 1
     params[:per_page] ||= Kaminari.config.default_per_page
   end
+
+  def normal_render(code = 0, data = nil)
+    _result = {code: code}
+    _result = _result.merge(data: data) if data.present?
+    render json: _result
+  end
 end
