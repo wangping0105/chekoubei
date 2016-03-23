@@ -1,0 +1,27 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header">添加标签</h2>
+  <%= form_for(Tag.new) do |f|%>
+  标签名:<%= f.text_field :name %> <%= f.submit '提交' %>
+  <%end %>
+  <div class="table-responsive" ng-controller="home">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>标签名称</th>
+        <th>类型</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tags.each_with_index do |t, i| %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= t.name %></td>
+            <td><%= t.tag_type %></td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+    <%= paginate @tags %>
+  </div>
+</div>
