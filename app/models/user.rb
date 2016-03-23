@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
 
   scope :has_store, ->(){where.not(store_id: nil)}
 
+  after_create do
+    ApiKey.create(user: self)
+  end
+
   def generate_authentication_token
     loop do
       self.authentication_token = User.encrypt(User.new_authentication_token)
