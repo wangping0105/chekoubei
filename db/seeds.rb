@@ -57,8 +57,19 @@ User.transaction do
 
     user = User.create(phone: "15921076830", role: User.roles[:super_admin], name: 'admin', password: '111111', store_id: store.id, identify_status: 1)
     user1 = User.create(phone: "18014821644", role: User.roles[:super_admin], name: '张先生', password: '111111', store_id: store.id, identify_status: 1)
+    user2 = User.create(phone: "13041487469", role: User.roles[:super_admin], name: 'david', password: '111111', store_id: store.id)
     add_attachment(user)
     add_attachment(user1)
+
+    attr = {
+        user: user2,
+        true_name: "鲁大伟",
+        extra: {
+            job: "程序猿",
+            invite_phones: ["15921076830", "18014821644"]
+        }
+    }
+    AuthApply.create(attr)
 
     car = Car.create(brand_id: Brand.first.id, user_id: User.first.id, model_no: 'test型号', color: '绿色', distance: 150000, on_time: "2015-11-11", description:'11111', car_type: 0)
     add_attachment(car, "#{Rails.root.to_s}/app/assets/images/demo_car.png")
