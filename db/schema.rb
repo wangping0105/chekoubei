@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322143844) do
+ActiveRecord::Schema.define(version: 20160323143015) do
 
   create_table "addresses", force: :cascade do |t|
     t.float    "lat",              limit: 24
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20160322143844) do
   add_index "addresses", ["district_id"], name: "index_addresses_on_district_id", using: :btree
   add_index "addresses", ["lat", "lng"], name: "index_addresses_on_lat_and_lng", using: :btree
   add_index "addresses", ["province_id"], name: "index_addresses_on_province_id", using: :btree
+
+  create_table "api_keys", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "access_token", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
   create_table "app_versions", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -72,18 +81,14 @@ ActiveRecord::Schema.define(version: 20160322143844) do
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "auth_applies", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.string   "phone",        limit: 255
-    t.string   "true_name",    limit: 255
-    t.text     "extra",        limit: 65535
-    t.string   "invite_phone", limit: 255
-    t.integer  "status",       limit: 4,     default: 0
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "user_id",    limit: 4
+    t.string   "true_name",  limit: 255
+    t.text     "extra",      limit: 65535
+    t.integer  "status",     limit: 4,     default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
-  add_index "auth_applies", ["invite_phone"], name: "index_auth_applies_on_invite_phone", using: :btree
-  add_index "auth_applies", ["phone"], name: "index_auth_applies_on_phone", using: :btree
   add_index "auth_applies", ["user_id"], name: "index_auth_applies_on_user_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
@@ -274,6 +279,7 @@ ActiveRecord::Schema.define(version: 20160322143844) do
     t.string   "password_digest",      limit: 255
     t.datetime "activated"
     t.integer  "role",                 limit: 4,   default: 0
+    t.integer  "identify_status",      limit: 4,   default: 0
     t.integer  "deleted_at",           limit: 4
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false

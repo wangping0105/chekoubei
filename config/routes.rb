@@ -5,6 +5,8 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+
+
   mount RuCaptcha::Engine => "/rucaptcha"
   draw :api
 
@@ -13,4 +15,9 @@ Rails.application.routes.draw do
   resources :home
   resources :cars
   resources :stores
+  resources :auth_applies, only:[ :index] do
+    collection do
+      get :treated
+    end
+  end
 end

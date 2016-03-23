@@ -17,7 +17,7 @@ module Api::IkAuthenticateable
 
   def current_user
     raise RailsParam::Param::InvalidParameterError.new("user_token 不能为空！") if auth_params[:user_token].nil?
-    @current_user ||= User.find_by(authentication_token: auth_params[:user_token])
+    @current_user ||= ApiKey.find_by(access_token: auth_params[:user_token]).try(:user)
   end
 
   def current_app

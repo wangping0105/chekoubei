@@ -1,0 +1,26 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header">认证处理</h2>
+  <h3 class="sub-header">认证请求人: <%= @auth_apply.user.phone %>-<%= @auth_apply.user.name %>-<%= @auth_apply.true_name %></h3>
+  <div class="table-responsive" ng-controller="home">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>邀请人序号</th>
+        <th>用户名</th>
+        <th>电话</th>
+        <th>认证状态</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @invite_users.each_with_index do |user, i|  %>
+          <tr>
+            <td>邀请人<%= i+1 %></td>
+            <td><%= user.name %></td>
+            <td><%= user.phone%></td>
+            <td><%= user.identify_status %></td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+  </div>
+</div>

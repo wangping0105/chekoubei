@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :store
-  has_many :auth_applies
+  has_one :auth_apply
+  has_one :api_key
   has_many :user_tags
   has_many :tags, through: :user_tags
 
@@ -15,6 +16,7 @@ class User < ActiveRecord::Base
 
   TEAVHER_URL = "/assets/guest.jpg"
   enum :role => {nomal: 0, store_admin: 1, super_admin: 2}
+  enum :identify_status => {no: 0, ok: 1}
 
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
 

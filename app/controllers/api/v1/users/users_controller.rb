@@ -6,20 +6,17 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
     param! :invite_phones, Array, required: true
 
     attr = {
+        user: current_user,
         true_name: params[:true_name],
-        extra: {job: params[:job]},
-        phone: current_user.phone
+        extra: {
+            job: params[:job],
+            invite_phones: params[:invite_phones]
+        }
     }
-    AuthApply.transaction do
-      begin
-        params[:invite_phones].each do |invite_phone|
-          attr[:invite_phone]=invite_phone
-          current_user.auth_applies.create(attr)
-        end
-        normal_render
-      rescue
-        raise EntityValidationError.new("申请失败!")
-      end
+    if AuthApply.create(attr)
+      normal_render
+    else
+      raise EntityValidationError.new("申请失败!")
     end
   end
 end

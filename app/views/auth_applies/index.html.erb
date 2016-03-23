@@ -1,0 +1,34 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header">申请列表</h2>
+  <div class="table-responsive" ng-controller="home">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>用户名</th>
+        <th>电话</th>
+        <th>真实姓名</th>
+        <th>职位</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @auth_applies.each_with_index do |auth, i|  %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= auth.user.name %></td>
+            <td><%= auth.user.phone%></td>
+            <td><%= auth.true_name %></td>
+            <td><%= auth.extra[:job] %></td>
+            <td><%= auth.status %></td>
+            <td><%=link_to "去处理", treated_auth_applies_path(user_id: auth.user_id) if auth.nutreated? %></td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+    <%= paginate @auth_applies %>
+  </div>
+</div>
+
+

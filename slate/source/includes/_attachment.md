@@ -19,16 +19,16 @@ attachment[file][tempfile] | true | 文件流
 {
   code: 0,
   data:{
-       id: 8,
-       file_url: "/system/attachments/files/000/000/008/original/demo_car.png?1458469347",
-       name: "",
-       file_file_name: "demo_car.png",
-       file_content_type: "image/png",
-       file_file_size: 514172,
-       user_name: "admin",
-       attachmentable_id: 4,
-       attachmentable_type: "Car",
-       upload_time: "2016-03-20 10:22"
+       "id": 8,
+       "file_url": "/system/attachments/files/000/000/008/original/demo_car.png?1458469347",
+       "name": "",
+       "file_file_name": "demo_car.png",
+       "file_content_type": "image/png",
+       "file_file_size": 514172,
+       "user_name": "admin",
+       "attachmentable_id": 4,
+       "attachmentable_type": "Car",
+       "upload_time": "2016-03-20 10:22"
    }
 }
 ```

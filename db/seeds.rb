@@ -55,8 +55,8 @@ User.transaction do
     )
     st.store_category_relations.create(store: store)
 
-    user = User.create(phone: "15921076830", role: User.roles[:super_admin], name: 'admin', password: '111111', store_id: store.id)
-    user1 = User.create(phone: "18014821644", role: User.roles[:super_admin], name: '张先生', password: '111111', store_id: store.id)
+    user = User.create(phone: "15921076830", role: User.roles[:super_admin], name: 'admin', password: '111111', store_id: store.id, identify_status: 1)
+    user1 = User.create(phone: "18014821644", role: User.roles[:super_admin], name: '张先生', password: '111111', store_id: store.id, identify_status: 1)
     add_attachment(user)
     add_attachment(user1)
 
