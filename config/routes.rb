@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       post :user_tag
+      delete :destroy_tag
     end
   end
 end

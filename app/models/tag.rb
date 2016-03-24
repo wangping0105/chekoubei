@@ -3,6 +3,8 @@ class Tag < ActiveRecord::Base
 
   enum tag_type: {user_tag: 0}
 
+  validates_uniqueness_of :name
+
   before_save do
     self.pinyin = PinYin.of_string(self.name).join("") if self.name.present?
   end

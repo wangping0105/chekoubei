@@ -1,5 +1,5 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
-  <h2 class="sub-header">认证处理</h2>
+  <h2 class="sub-header">认证处理(<%= link_to '标签管理', tags_path %>)</h2>
   <h3 class="sub-header">认证请求人: <%= @auth_apply.user.phone %>-<%= @auth_apply.user.name %>-<%= @auth_apply.true_name %></h3>
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
@@ -24,12 +24,30 @@
     </table>
   </div>
   <div class="table-responsive" ng-controller="home">
-    为<%= @auth_apply.user.phone %>添加标签
     <%= form_for(UserTag.new, url: user_tag_user_path(@auth_apply.user)) do %>
-        <div>标签:
-          <%= select_tag(:tag_id, options_for_select(Tag.all.map{|t| [t.name, t.id]})) do%>
-          <%end %>
-        </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>标签序号</th>
+        <th>标签名</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @auth_apply.user.tags.each_with_index do |tag, i|  %>
+          <tr>
+            <td>标签<%= i+1 %></td>
+            <td><%= tag.name %></td>
+            <td><%=link_to '删除', destroy_tag_user_path(@auth_apply.user, tag_id: tag.id), method: :delete %></td>
+          </tr>
+      <%end %>
+      <tr>
+        <td>添加标签</td>
+        <td><%= select_tag(:tag_id, options_for_select(Tag.all.map{|t| [t.name, t.id]}))%></td>
+        <td><%= button_tag '添加' %></td>
+      </tr>
+      </tbody>
+    </table>
     <%end %>
   </div>
 </div>

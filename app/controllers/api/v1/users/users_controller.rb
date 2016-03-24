@@ -1,4 +1,8 @@
 class Api::V1::Users::UsersController < Api::V1::BaseController
+  before_action :set_user, only:[ :show]
+
+  def show
+  end
 
   def auth_apply
     param! :true_name, String, required: true
@@ -18,5 +22,10 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
     else
       raise EntityValidationError.new("申请失败!")
     end
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
   end
 end
