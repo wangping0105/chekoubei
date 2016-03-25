@@ -10,9 +10,9 @@ toc_footers:
   - <a href='models.html'>数据表设计</a>
 
 includes:
-  - user/auth
-  - user/stores
   - user/user
+  - user/stores
+  - user/auth
   - attachment
   - errors
 

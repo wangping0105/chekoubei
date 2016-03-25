@@ -18,4 +18,6 @@ module ErrorCodes
   INVALID_CAPTCHA = 200400 #无效的验证码
 
   FAIL_SMS = 300000 # 短信发送失败
+
+  ENTITY_VALIDATION = 400100 # 对象校验错误
 end

@@ -46,7 +46,7 @@ module Api::IkRescueable
 
   def entity_validation_error(e)
     log_error(e)
-    render json: { code: ErrorCodes::INVALID_PARAMS, message: e.message, error: e.class.name.underscore }
+    render json: { code: ErrorCodes::ENTITY_VALIDATION, message: e.message, error: e.class.name.underscore }
   end
 
   def signup_invalid_phone_error(e)
