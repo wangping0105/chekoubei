@@ -3,3 +3,4 @@ require "utility"
 
 require "errors/errors"
 require "errors/error_codes"
+require "pusher/huanxin"
