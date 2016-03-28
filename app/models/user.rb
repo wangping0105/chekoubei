@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
   after_create do
     ApiKey.create(user: self)
+    HuanXin::HuanXinInst.create_im_user(self)
   end
 
   def generate_authentication_token
