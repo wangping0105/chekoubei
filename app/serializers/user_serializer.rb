@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :created_at, :name, :phone, :is_store_user, :file_url, :tags
+  attributes :id, :created_at, :name, :phone, :is_store_user, :file_url, :tags, :im_user
 
   #string型属性
   self.stringify_keys = [:created_at, :name, :phone]
@@ -22,5 +22,14 @@ class UserSerializer < ActiveModel::Serializer
 
   def tags
     object.tags.map(&:name)
+  end
+
+  def im_user
+    return {} unless object.im_user
+    {
+      username: object.im_user.username,
+      password: object.im_user.password,
+      nickname: object.im_user.nickname.to_s
+    }
   end
 end
