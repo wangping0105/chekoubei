@@ -22,7 +22,12 @@ password | true | mi码
       "created_at": "2016-03-03T03:15:55.000Z",
       "name": "admin",
       "phone": "15921076831",
-      "is_store_user": false
+      "is_store_user": false,
+      "im_user": {
+        "username": "qw",
+        "password": "123"
+        "nickname": "asda"
+      }
     },
     "user_token": "019c0438d2843820d087db7ba1a41b33da97500d"
   }
@@ -39,7 +44,6 @@ password | true | mi码
 字段名 | 是否必填 | 描述
 --------- | ------- | -----------
 sms_type | true | 类型，值 in ['sign_up', 'change_pwd']
-code | true | 码
 phone | true | 电话
 
 
