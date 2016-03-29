@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   private
   def default_page_title
-    @page_title = "魔书网"
+    @page_title = "车口碑"
   end
 
   def raise_error(flag, message)

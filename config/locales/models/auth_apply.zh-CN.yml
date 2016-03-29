@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      auth_apply: "认证申请"
+    attributes:
+      auth_apply:
+        id: "ID"
+        name: "名称"
+  enums:
+    auth_apply:
+      status:
+        untreated: "未处理"
+        treated: "已处理"

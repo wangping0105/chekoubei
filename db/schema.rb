@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 20160328075255) do
     t.integer  "attachmentable_id",   limit: 4
     t.string   "attachmentable_type", limit: 255
     t.string   "name",                limit: 255
-    t.string   "file_name",           limit: 255
+    t.string   "file_file_name",      limit: 255
     t.string   "file_content_type",   limit: 255
-    t.integer  "file_size",           limit: 4
+    t.integer  "file_file_size",      limit: 4
     t.datetime "file_updated_at"
     t.datetime "deleted_at"
     t.text     "note",                limit: 65535
@@ -92,15 +92,15 @@ ActiveRecord::Schema.define(version: 20160328075255) do
   add_index "auth_applies", ["user_id"], name: "index_auth_applies_on_user_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "pinyin",     limit: 255
-    t.integer  "parent_id",  limit: 4
-    t.integer  "brand_type", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",         limit: 255
+    t.string   "pinyin",       limit: 255
+    t.integer  "parent_id",    limit: 4
+    t.integer  "stores_count", limit: 4
+    t.integer  "brand_type",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "brands", ["brand_type"], name: "index_brands_on_brand_type", using: :btree
   add_index "brands", ["name"], name: "index_brands_on_name", using: :btree
   add_index "brands", ["parent_id"], name: "index_brands_on_parent_id", using: :btree
   add_index "brands", ["pinyin"], name: "index_brands_on_pinyin", using: :btree
@@ -241,15 +241,12 @@ ActiveRecord::Schema.define(version: 20160328075255) do
     t.string   "business_hours",    limit: 255
     t.integer  "level",             limit: 4
     t.integer  "order_count",       limit: 4
-    t.float    "lat",               limit: 24
-    t.float    "lng",               limit: 24
     t.integer  "deleted_at",        limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
 
   add_index "stores", ["brand_id"], name: "index_stores_on_brand_id", using: :btree
-  add_index "stores", ["lat", "lng"], name: "index_stores_on_lat_and_lng", using: :btree
   add_index "stores", ["name"], name: "index_stores_on_name", using: :btree
   add_index "stores", ["pinyin"], name: "index_stores_on_pinyin", using: :btree
   add_index "stores", ["store_category_id"], name: "index_stores_on_store_category_id", using: :btree
@@ -292,10 +289,11 @@ ActiveRecord::Schema.define(version: 20160328075255) do
     t.string   "authentication_token", limit: 255
     t.string   "password_digest",      limit: 255
     t.datetime "activated"
-    t.boolean  "admin",                            default: false
+    t.integer  "role",                 limit: 4,   default: 0
+    t.integer  "identify_status",      limit: 4,   default: 0
     t.integer  "deleted_at",           limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
