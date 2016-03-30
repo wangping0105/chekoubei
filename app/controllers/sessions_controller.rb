@@ -17,10 +17,10 @@ class SessionsController < ApplicationController
       else
         flash[:danger] = '账户密码不正确，请重试!'
       end
-      redirect_back_or sessions_path
+      redirect_back_or root_path
     else
       @user = User.new
-      flash[:error] = "注册失败,验证码错误"
+      flash[:error] = "登录失败,验证码错误"
       render 'sessions/index'
     end
   end

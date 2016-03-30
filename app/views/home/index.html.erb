@@ -5,22 +5,22 @@
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
       <h4>标签</h4>
-      <span class="text-muted">Something else</span>
+      <span class="text-muted">1</span>
     </div>
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
       <h4>标签</h4>
-      <span class="text-muted">Something else</span>
+      <span class="text-muted">2</span>
     </div>
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
       <h4>标签</h4>
-      <span class="text-muted">Something else</span>
+      <span class="text-muted">3</span>
     </div>
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
       <h4>标签</h4>
-      <span class="text-muted">Something else</span>
+      <span class="text-muted">4</span>
     </div>
   </div>
 
@@ -37,9 +37,9 @@
       </tr>
       </thead>
       <tbody>
-      <%Brand.order(pinyin: :asc).each_with_index do |b, i|  %>
+      <%@brands.each_with_index do |b, i|  %>
           <tr>
-            <td><%= i %></td>
+            <td><%= i+1 %></td>
             <td><%= b.name %></td>
             <td><%= b.stores_count.to_i %></td>
             <td><%= b.pinyin[0].upcase %></td>
@@ -48,6 +48,7 @@
       <%end %>
       </tbody>
     </table>
+    <%= paginate @brands %>
   </div>
 
   <!-- angular js 示例-->
