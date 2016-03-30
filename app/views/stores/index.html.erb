@@ -1,5 +1,11 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
   <h2 class="sub-header">门店列表</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to '添加门店', new_store_path, class: "btn btn-sm btn-primary"%>
+    </div>
+  </div>
+
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
       <thead>
