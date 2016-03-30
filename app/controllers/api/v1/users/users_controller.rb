@@ -17,10 +17,14 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
             invite_phones: params[:invite_phones]
         }
     }
-    if AuthApply.create(attr)
-      normal_render
+    if @user.auth_apply
+      raise EntityValidationError.new("您已经申请认证!")
     else
-      raise EntityValidationError.new("申请失败!")
+      if AuthApply.create(attr)
+        normal_render
+      else
+        raise EntityValidationError.new("申请失败!")
+      end
     end
   end
 
