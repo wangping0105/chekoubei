@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     member do
       post :user_tag
       delete :destroy_tag
+      put :pass_auth
     end
   end
 end

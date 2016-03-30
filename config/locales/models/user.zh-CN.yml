@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      user: "用户"
+    attributes:
+      user:
+        id: "ID"
+        name: "名称"
+  enums:
+    user:
+      identify_status:
+        no: "未认证"
+        ok: "已认证"
+      role:
+        nomal: "普通用户"
+        store_admin: "门店管理员"
+        super_admin: "超级管理员"

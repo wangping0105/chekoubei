@@ -1,0 +1,12 @@
+zh-CN:
+  activerecord:
+    models:
+      tag: "标签"
+    attributes:
+      tag:
+        id: "ID"
+        name: "名称"
+  enums:
+    tag:
+      tag_type:
+        user_tag: "用户标签"

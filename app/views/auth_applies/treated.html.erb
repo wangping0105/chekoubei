@@ -1,6 +1,12 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
-  <h2 class="sub-header">认证处理(<%= link_to '标签管理', tags_path %>)</h2>
-  <h3 class="sub-header">认证请求人: <%= @auth_apply.user.phone %>-<%= @auth_apply.user.name %>-<%= @auth_apply.true_name %></h3>
+  <h2 class="sub-header">认证处理</h2>
+  <h3 class="sub-header">认证请求人: <%= @auth_apply.user.phone %>-<%= @auth_apply.user.name %>-<%= @auth_apply.true_name %>
+      <%if @auth_apply.user.ok? %>
+        <span class="color-red">已经认证</span>
+      <%else %>
+        <%=link_to '通过认证', pass_auth_user_path(@auth_apply.user), method: :put, class: 'btn btn-primary' %>
+      <%end %>
+  </h3>
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
       <thead>
@@ -17,7 +23,7 @@
             <td>邀请人<%= i+1 %></td>
             <td><%= user.name %></td>
             <td><%= user.phone%></td>
-            <td><%= user.identify_status %></td>
+            <td><%= I18n.t("enums.user.identify_status.#{user.identify_status}")%></td>
           </tr>
       <%end %>
       </tbody>
@@ -41,11 +47,17 @@
             <td><%=link_to '删除', destroy_tag_user_path(@auth_apply.user, tag_id: tag.id), method: :delete %></td>
           </tr>
       <%end %>
+      <%if Tag.count > 0 %>
       <tr>
         <td>添加标签</td>
         <td><%= select_tag(:tag_id, options_for_select(Tag.all.map{|t| [t.name, t.id]}))%></td>
         <td><%= button_tag '添加' %></td>
       </tr>
+      <%else %>
+        <tr>
+          <td colspan="3" align="center">暂无标签内容，请先去<%= link_to '添加标签', tags_path%></td>
+        </tr>
+      <%end %>
       </tbody>
     </table>
     <%end %>

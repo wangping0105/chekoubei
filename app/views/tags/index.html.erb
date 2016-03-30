@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
   <h2 class="sub-header">添加标签</h2>
   <%= form_for(Tag.new) do |f|%>
-  标签名:<%= f.text_field :name %> <%= f.submit '提交' %>
+  标签名: <%= f.text_field :name %> <%= f.submit '添加', class: 'btn btn-sm btn-primary'%>
   <%end %>
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
