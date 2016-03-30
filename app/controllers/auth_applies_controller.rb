@@ -2,7 +2,7 @@ class AuthAppliesController < ApplicationController
   before_action :is_super_admin?
 
   def index
-    @auth_applies = AuthApply.includes(:user)
+    @auth_applies = AuthApply.includes(:user).order(status: :asc).order(id: :desc)
     @auth_applies = filter_page(@auth_applies)
   end
 

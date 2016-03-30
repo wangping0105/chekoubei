@@ -26,10 +26,13 @@ class UsersController < ApplicationController
 
 
   def pass_auth
-    @user.update(identify_status: User.identify_statuses[:ok])
+    User.transaction do
+      @user.update(identify_status: User.identify_statuses[:ok])
+      @user.auth_apply.update(status: AuthApply.statuses[:treated])
 
-    flash[:success] = "认证成功"
-    redirect_to treated_auth_applies_path(user_id: @user.id)
+      flash[:success] = "认证成功"
+      redirect_to treated_auth_applies_path(user_id: @user.id)
+    end
   end
   private
   def set_user

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   TEAVHER_URL = "/assets/guest.jpg"
   enum :role => {nomal: 0, store_admin: 1, super_admin: 2}
-  enum :identify_status => {no: 0, ok: 1}
+  enum :identify_status => {not: 0, ok: 1}
 
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
 

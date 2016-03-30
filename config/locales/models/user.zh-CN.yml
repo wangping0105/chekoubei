@@ -9,7 +9,7 @@ zh-CN:
   enums:
     user:
       identify_status:
-        no: "未认证"
+        not: "未认证"
         ok: "已认证"
       role:
         nomal: "普通用户"
