@@ -4,8 +4,8 @@
   <div class="row placeholders">
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-      <h4>标签</h4>
-      <span class="text-muted">1</span>
+      <h4><%= link_to "车牌列表", brands_home_index_path %></h4>
+      <span class="text-muted">总数量：<%= Brand.count %></span>
     </div>
     <div class="col-xs-6 col-sm-3 placeholder">
       <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
@@ -30,59 +30,26 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>名称</th>
-        <th>门店数量</th>
-        <th>首字母</th>
-        <th></th>
+        <th>用户名</th>
+        <th>电话</th>
+        <th>认证状态</th>
+        <th>身份</th>
       </tr>
       </thead>
       <tbody>
-      <%@brands.each_with_index do |b, i|  %>
+      <%@users.each_with_index do |user, i|  %>
           <tr>
             <td><%= i+1 %></td>
-            <td><%= b.name %></td>
-            <td><%= b.stores_count.to_i %></td>
-            <td><%= b.pinyin[0].upcase %></td>
-            <td>~~</td>
+            <td><%= user.name %></td>
+            <td><%= user.phone %></td>
+            <td><%= I18n.t("enums.user.identify_status.#{user.identify_status}") %></td>
+            <td><%= I18n.t("enums.user.role.#{user.role}") %></td>
           </tr>
       <%end %>
       </tbody>
     </table>
-    <%= paginate @brands %>
+    <%= paginate @users %>
   </div>
-
-  <!-- angular js 示例-->
-  <!--<div class="table-responsive" ng-controller="home">-->
-    <!--<table class="table table-striped">-->
-      <!--<thead>-->
-      <!--<tr>-->
-        <!--<th>#</th>-->
-        <!--<th>名称</th>-->
-        <!--<th>门店数量</th>-->
-        <!--<th>首字母</th>-->
-        <!--<th>~~</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr ng-repeat="c in brands">-->
-        <!--<td>{{c.id}}</td>-->
-        <!--<td>{{c.name}}</td>-->
-        <!--<td>{{c.stores_count}}</td>-->
-        <!--<td>{{c.pinyin}}</td>-->
-        <!--<td>~~</td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-    <!--</table>-->
-  <!--</div>-->
-  <script>
-  //  var app = angular.module('cheKouBei', []);
-  //  app.controller('home', function($scope, $http) {
-  //    $http.get("/api/v1/users/cars/brands?store_car_id=4&user_token=<%= current_user.authentication_token %>").then(function (response) {
-  //      $scope.brands = response.data.data;
-  //    });
-  //  });
-  </script>
-
 </div>
 
 
