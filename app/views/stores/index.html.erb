@@ -28,7 +28,7 @@
             <td><%= i+1 %></td>
             <td><%= store.name %></td>
             <td><%= store.brand.try(:name).to_s %></td>
-            <td><%= store.store_category.name%></td>
+            <td><%= store.store_category.try(:name)%></td>
             <td><%= store.level.to_i %></td>
             <td><%= store.address.try(:district).try(:name)%></td>
             <td><%= store.address.try(:detail_address)%></td>

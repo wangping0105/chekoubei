@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if verify_rucaptcha?(@user)
+    if verify_rucaptcha?(@user) || Rails.env == "development"
       @user = User.has_store.find_by(phone: user_params[:phone])
       if @user && @user.authenticate(user_params[:password])
         sign_in(@user)
