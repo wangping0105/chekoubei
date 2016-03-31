@@ -48,7 +48,8 @@
 
 字段名 | 是否必填 | 描述
 --------- | ------- | -----------
-store_category | false | 类型id
+store_category_id | false | 类型id
+brand_id | false | 品牌id
 order | false | 排序方式, distance 根据距离
 lat | false | 纬度
 lng | false | 经度

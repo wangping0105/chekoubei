@@ -17,6 +17,9 @@ namespace :api, defaults: { format: :json } do
           post :store_cars
           get :store_car, :store_car_list
         end
+        collection do
+          get :store_categories
+        end
       end
       resources :cars, except: [:edit, :new] do
         collection do

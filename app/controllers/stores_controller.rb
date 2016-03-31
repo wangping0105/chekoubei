@@ -27,8 +27,7 @@ class StoresController < ApplicationController
         _files.each do |file|
           Attachment.create(file: file, user: current_user, attachmentable: @store)
         end
-        StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])
-        
+        # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
         flash[:success] = "门店创建成功！"
         redirect_to stores_path
       else
@@ -56,7 +55,7 @@ class StoresController < ApplicationController
 
   def store_params
     params.require(:store).permit([
-      :name, :level, :introduction, :brand_id,
+      :name, :level, :introduction, :brand_id, :store_category_id,
       attachments_attributes: [:file, :_destroy, :id],
       address_attributes: [:tel, :zip, :fax, :url, :detail_address, :phone, :province_id, :city_id, :country_id, :district_id, :email, :qq, :wechat, :wangwang, :id]
     ])

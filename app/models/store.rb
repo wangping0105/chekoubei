@@ -5,8 +5,8 @@ class Store < ActiveRecord::Base
   has_many :attachments, as: :attachmentable
   accepts_nested_attributes_for :attachments, update_only: true, allow_destroy: true
 
-  has_one :store_category_relation
-  has_one :store_category, through: :store_category_relation
+  # has_one :store_category_relation
+  belongs_to :store_category#, through: :store_category_relation 一个门店对应一个类型
   has_many :store_cars
   has_many :cars, through: :store_cars
 
