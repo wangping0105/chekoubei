@@ -19,12 +19,18 @@ Rails.application.routes.draw do
   end
   resources :cars
   resources :tags
-  resources :stores
+  resources :stores do
+    collection do
+      get :get_address_options
+    end
+  end
+
   resources :auth_applies, only:[ :index] do
     collection do
       get :treated
     end
   end
+
   resources :users do
     member do
       post :user_tag

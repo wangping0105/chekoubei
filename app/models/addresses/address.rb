@@ -12,6 +12,12 @@ class Address < ActiveRecord::Base
 
   delegate :provinces_names, :cities_names, to: "self.class"
 
+  before_save do
+    if changes[:detail_address].present?
+      convert_detail_address_to_lat_lng
+    end
+  end
+
   # 转化百度的to高德
   def convert_baidu_lat_lng_to_gaode(skip_save = true)
     begin

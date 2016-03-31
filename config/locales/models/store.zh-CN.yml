@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      store: "门店"
+    attributes:
+      store:
+        id: "ID"
+        name: "名称"
