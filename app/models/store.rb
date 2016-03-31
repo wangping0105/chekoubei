@@ -21,6 +21,7 @@ class Store < ActiveRecord::Base
   serialize :business_hours
 
   validates_uniqueness_of :name
+  validates_presence_of :name
 
   attr_accessor :distance
 

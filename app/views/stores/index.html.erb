@@ -32,7 +32,12 @@
             <td><%= store.level.to_i %></td>
             <td><%= store.address.try(:district).try(:name)%></td>
             <td><%= store.address.try(:detail_address)%></td>
-            <td><img width="100" src="<%= store.attachments.first.try(:file_url)%>" ></td>
+            <td>
+              <button type="button" data-toggle='popover_image'>查看图片
+                <% store.attachments.each do |a| %>
+                  <%= hidden_field_tag :img, a.file_url %>
+                <%end %>
+            </button></td>
             <td><%= store.introduction%></td>
             <td><%= store.business_hours.first%>~<%= store.business_hours.last%></td>
           </tr>
@@ -43,4 +48,46 @@
   </div>
 </div>
 
+<script>
+$(function (){
+  $("[data-toggle='popover_image']").on("click", function(){
+    var str = ""
+    $.each($(this).find("[name='img']"), function(i, v){
+     str += '<img src="'+$(v).val()+'" /></br>';
+    })
+    str = '<div class="custome_popover_div"><div class="custome_popover" role="tooltip" ><div class="float-r margin-10 arrow">X</div><h3 class="popover-title"></h3><div class="popover-content">'+str+'</div></div>' + '</div>'
+    $("body").append(str);
+    $(".custome_popover").on("click", function(){
+      $(this).parent().remove();
+    })
+  })
+//    $("[data-toggle='popover']").popover({
+//        trigger: "manual",
+//        title: '查看大图',
+//        html: true,
+//        content: '<img src="'+$(this).attr("src")+'" />',
+//        template: '<div class="popover w-200px" role="tooltip" ><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+//    }).on("mouseenter", function(evt) {
+//        var timeoutId, _this;
+//        $('[data-toggle="popover"]').not(this).popover('hide');
+//        _this = this;
+//        return timeoutId = setTimeout( function() {
+//            $(_this).popover('show');
+//            return $(".popover").on("mouseleave", function() {
+//                return $(_this).popover('hide');
+//            });
+//        },20);
+//    }).on("mouseleave", function() {
+//        var timeoutId, _this;
+//        var _this;
+//        _this = this;
+//        clearTimeout(timeoutId);
+//        return setTimeout(function() {
+//            if (!$(".popover:hover").length) {
+//                return $(_this).popover("hide");
+//            }
+//        },50);
+//    });
+});
+</script>
 
