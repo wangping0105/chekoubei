@@ -33,11 +33,16 @@
             <td><%= store.address.try(:district).try(:name)%></td>
             <td><%= store.address.try(:detail_address)%></td>
             <td>
+              <% unless store.attachments.present?%>
+                暂无图片
+              <%else %>
               <button type="button" data-toggle='popover_image'>查看图片
                 <% store.attachments.each do |a| %>
                   <%= hidden_field_tag :img, a.file_url %>
                 <%end %>
-            </button></td>
+              </button>
+              <%end %>
+            </td>
             <td><%= store.introduction%></td>
             <td><%= store.business_hours.first%>~<%= store.business_hours.last%></td>
           </tr>

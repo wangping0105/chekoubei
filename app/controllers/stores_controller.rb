@@ -16,7 +16,7 @@ class StoresController < ApplicationController
   end
   
   def create
-    _files = params[:file]
+    _files = params[:file] || []
     
     business_hours_start = params[:business_hours_start].to_s
     business_hours_end = params[:business_hours_end]
