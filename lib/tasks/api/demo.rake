@@ -31,16 +31,54 @@ namespace :demo do
 
   desc 'brand other'
   task brand_other: :environment do
-    name = "平安车险"
-    Brand.create(name: name, brand_type: Brand.brand_types[:car_insurance])
-    name = "平安车贷"
-    Brand.create(name: name, brand_type: Brand.brand_types[:car_loan])
-    name = "平安车抵押"
-    Brand.create(name: name, brand_type: Brand.brand_types[:car_mortgage])
+    brands = Brand.where(name: ["奥迪", "AC Schnitzer", "Artega", "奔驰", "宝马", "保时捷", "巴博斯", "宝沃", "大众", "KTM", "卡尔森", "MINI", "欧宝", "smart", "STARTECH", "泰卡特", "平安车险", "平安车贷", "平安车抵押"])
+    brands.each do |brand|
+      store_add(brand)
+    end
+
+    name = "太平洋车险"
+    b = Brand.find_or_create_by(name: name, brand_type: Brand.brand_types[:car_insurance])
+    store_add(b)
+    name = "宜车贷"
+    b = Brand.find_or_create_by(name: name, brand_type: Brand.brand_types[:car_loan])
+    store_add(b)
+    name = "太平洋车抵押"
+    b = Brand.find_or_create_by(name: name, brand_type: Brand.brand_types[:car_mortgage])
+    store_add(b)
 
     p "over!"
   end
 
+  def store_add(brand)
+    case brand.brand_type
+       when "car"
+        name = ["新车", '二手车'][rand(2)]
+       when "car_insurance"
+        name = "车险"
+       when "car_loan"
+        name = "车贷"
+       when "car_mortgage"
+        name = "车抵押"
+    end
+    st = StoreCategory.find_by(name: name)
+    (1..10).each do |i|
+      province = Province.find_by(name: '上海')
+      address = Address.create(province: province, detail_address: '宝山区高境一村138号')
+      address.convert_detail_address_to_lat_lng
+      Store.create(
+        name: "#{i}号test#{brand.name}店",
+        short_name: "四牌楼#{brand.name}",
+        introduction: '专业修车一百年',
+        brand_id: brand.id,
+        store_type: '',
+        store_category_id: st.id,
+        business_hours: ["8:00", "18:00"],
+        level: 1,
+        address: address
+      )
+    end
+    p "over add #{brand.name} store!"
+  end
 
   desc 'add store'
   task store: :environment do
