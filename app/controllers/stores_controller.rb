@@ -48,6 +48,13 @@ class StoresController < ApplicationController
     render json: {data: @data}
   end
 
+  def get_store_brand_options
+    params[:brand_type] ||= 'car'
+    brand_type = Brand.brand_types[params[:brand_type]]
+    @data = Brand.where(brand_type: brand_type).order(pinyin: :asc)
+
+    render json: {data: @data}
+  end
   private
   def set_store
     @store = Store.find params[:id]

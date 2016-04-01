@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :stores do
     collection do
-      get :get_address_options
+      get :get_address_options, :get_store_brand_options
     end
   end
 

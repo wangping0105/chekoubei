@@ -43,7 +43,7 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
     params[:brand_type] ||= 'car'
     brand_type = Brand.brand_types[params[:brand_type]]
 
-    @brands = Brand.where(brand_type: brand_type).
+    @brands = Brand.where(brand_type: brand_type).order(pinyin: :asc).
       where("stores_count > 0").page(params[:page]).per(params[:per_page])
     data = @brands.map{|s|{id: s.id, name: s.name}}
 
