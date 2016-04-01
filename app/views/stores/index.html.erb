@@ -18,7 +18,7 @@
         <th>区</th>
         <th>地址</th>
         <th>图片</th>
-        <th>介绍</th>
+        <th class="maxw-200">介绍</th>
         <th>营业时间</th>
       </tr>
       </thead>
@@ -43,7 +43,7 @@
                 </button>
               <%end %>
             </td>
-            <td><%= store.introduction%></td>
+            <td class="maxw-200"><%= word_limit store.introduction%></td>
             <td><%= store.business_hours.first%>~<%= store.business_hours.last%></td>
           </tr>
       <%end %>
