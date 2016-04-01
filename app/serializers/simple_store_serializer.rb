@@ -3,11 +3,11 @@ class SimpleStoreSerializer < ActiveModel::Serializer
   extend Geocoder::Model::ActiveRecord unless defined? Rails::Railtie
 
   self.root = false
-  attributes :id, :name, :short_name, :introduction, :store_type, :store_type, :business_hours, :level, :order_count,
+  attributes :id, :name, :short_name, :introduction, :store_type, :level, :order_count, :store_category_name, :brand_name,
              :address, :image_attachments, :distance
 
   #string型属性
-  self.stringify_keys = [:created_at, :name, :short_name, :introduction, :store_type, :business_hours, :store_type]
+  self.stringify_keys = [:created_at, :name, :short_name, :introduction, :store_type, :store_category_name]
   #integer型属性
   self.integerify_keys = [:id, :level, :order_count]
   #float型属性
@@ -21,6 +21,14 @@ class SimpleStoreSerializer < ActiveModel::Serializer
   def image_attachments
     return [] unless object.image_attachments
     ActiveModel::ArraySerializer.new(object.image_attachments, each_serializer: AttachmentSerializer)
+  end
+
+  def brand_name
+    object.brand.try(:name).to_s
+  end
+
+  def store_category_name
+    "#{object.store_category.try(:name).to_s}店"
   end
 
   def distance

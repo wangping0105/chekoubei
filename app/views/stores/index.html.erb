@@ -36,11 +36,11 @@
               <% unless store.attachments.present?%>
                 暂无图片
               <%else %>
-              <button type="button" data-toggle='popover_image'>查看图片
-                <% store.attachments.each do |a| %>
-                  <%= hidden_field_tag :img, a.file_url %>
-                <%end %>
-              </button>
+                <button type="button" data-toggle='popover_image'>查看图片
+                  <% store.attachments.each do |a| %>
+                    <%= hidden_field_tag :img, a.file_url %>
+                  <%end %>
+                </button>
               <%end %>
             </td>
             <td><%= store.introduction%></td>

@@ -1,5 +1,5 @@
 class Api::V1::Users::StoresController < Api::V1::BaseController
-  before_action :set_default_page_params, only: [:index, :store_car_list, :store_categories]
+  before_action :set_default_page_params, only: [:index, :store_car_list, :store_brands]
   before_action :set_store, only: [:store_car, :store_cars, :show, :store_car_list]
 
   def index
@@ -20,11 +20,11 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
 
       data = @stores.map{|s|
         s.addressable.distance = s.distance
-        StoreSerializer.new(s.addressable)
+        SimpleStoreSerializer.new(s.addressable)
       }
     else
-      @stores = Store.includes(:image_attachments, :address).
-          where(store_category_id: params[:store_category]).page(params[:page]).per(params[:per_page])
+      @stores = Store.includes(:image_attachments, :address).page(params[:page]).per(params[:per_page])
+
       @stores = filter_stores(@stores)
       data = ActiveModel::ArraySerializer.new(@stores, each_serializer: SimpleStoreSerializer)
     end
@@ -38,16 +38,19 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
     }
   end
 
-  def store_categories
-    param! :store_category_id, Integer, required: false
-    @store_categories = StoreCategory.where("stores.store_category_id = ?", params[:store_category]).
+  def store_brands
+    param! :brand_type, String, required: false
+    params[:brand_type] ||= 'car'
+    brand_type = Brand.brand_types[params[:brand_type]]
+
+    @brands = Brand.where(brand_type: brand_type).
       where("stores_count > 0").page(params[:page]).per(params[:per_page])
-    data = @store_categories.map{|s|{id: s.id, name: s.name}}
+    data = @brands.map{|s|{id: s.id, name: s.name}}
 
     render json: {
       code: 0,
       data: data,
-      total_count: @store_categories.total_count,
+      total_count: @brands.total_count,
       per_page: (params[:per_page]).to_i,
       page: (params[:page]).to_i
     }
@@ -86,8 +89,8 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
   end
   private
   def filter_stores(stores)
-    stores = stores.where("stores.store_category_id = ?", params[:store_category]) if params[:store_category].present?
-    stores = stores.where("stores.brand_id", params[:brand_id]) if params[:brand_id].present?
+    stores = stores.where("stores.store_category_id = ?", params[:store_category_id]) if params[:store_category_id].present?
+    stores = stores.where("stores.brand_id = ?", params[:brand_id]) if params[:brand_id].present?
     stores
   end
 

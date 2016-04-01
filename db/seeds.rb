@@ -49,11 +49,12 @@ User.transaction do
         introduction: '专业修车一百年',
         brand_id: brand.id,
         store_type: '',
+        store_category_id: st.id,
         business_hours: ["8:00", "18:00"],
         level: 1,
         address: address
     )
-    st.store_category_relations.create(store: store)
+    # st.store_category_relations.create(store: store)
 
     user = User.create(phone: "15921076830", role: User.roles[:super_admin], name: '平神', password: '111111', store_id: store.id, identify_status: 1)
     user1 = User.create(phone: "18014821644", role: User.roles[:super_admin], name: '张先生', password: '111111', store_id: store.id, identify_status: 1)

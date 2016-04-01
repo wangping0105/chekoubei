@@ -18,7 +18,7 @@ namespace :api, defaults: { format: :json } do
           get :store_car, :store_car_list
         end
         collection do
-          get :store_categories
+          get :store_brands
         end
       end
       resources :cars, except: [:edit, :new] do

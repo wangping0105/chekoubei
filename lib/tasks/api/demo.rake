@@ -29,6 +29,18 @@ namespace :demo do
     end
   end
 
+  desc 'brand other'
+  task brand_other: :environment do
+    name = "平安车险"
+    Brand.create(name: name, brand_type: Brand.brand_types[:car_insurance])
+    name = "平安车贷"
+    Brand.create(name: name, brand_type: Brand.brand_types[:car_loan])
+    name = "平安车抵押"
+    Brand.create(name: name, brand_type: Brand.brand_types[:car_mortgage])
+
+    p "over!"
+  end
+
 
   desc 'add store'
   task store: :environment do

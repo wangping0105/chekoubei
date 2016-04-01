@@ -41,6 +41,26 @@ module HuanXin
       get("#{api_path}/users", attr, token)
     end
 
+    def send_penetrate_msg(target_users, msg)
+      options = {
+        target_type: "users",     # users 给用户发消息,  chatgroups 给群发消息, chatrooms 给聊天室发消息
+        target: target_users, # 注意这里需要用数组,数组长度建议不大于20, 即使只有
+        # 一个用户u1或者群组, 也要用数组形式 ['u1'], 给用户发
+        # 送时数组元素是用户名,给群组发送时数组元素是groupid
+        msg:{  #消息内容
+               type: "cmd",  # 消息类型
+               action: "post",
+               content: msg
+        },
+        #from:"testa",  #表示消息发送者, 无此字段Server会默认设置为"from":"admin",有from字段但值为空串("")时请求失败
+        ext:{   #扩展属性, 由app自己定义.可以没有这个字段，但是如果有，值不能是“ext:null“这种形式，否则出错
+                txt: msg,
+                attr2: "v2"
+        }
+      }
+      post("#{api_path}/messages", options)
+    end
+
     private
     def post(uri, options)
       response = ""
