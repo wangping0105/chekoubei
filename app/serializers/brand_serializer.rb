@@ -12,6 +12,6 @@ class BrandSerializer < ActiveModel::Serializer
   self.floatify_keys = []
 
   def logo
-    "/assets/brand_logos/#{object.pinyin}.png"
+    "/system/brand_logos/#{object.pinyin}.png"
   end
 end
