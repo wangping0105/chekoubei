@@ -62,11 +62,13 @@ per_page | fasle | 每页数量
   "data": [
     {
       "id": 1,
-      "name": "奥迪"
+      "name": "奥迪",
+      "logo":"/assets/brand_logos/aodi.png"
     },
     {
       "id": 9,
-      "name": "大众"
+      "name": "大众",
+      "logo":"/assets/brand_logos/aodi.png"
     }
   ],
   "total_count": 2,
