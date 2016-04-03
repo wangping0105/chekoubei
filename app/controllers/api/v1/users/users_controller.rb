@@ -2,6 +2,15 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
   before_action :set_user, only:[ :show]
 
   def show
+    param! :user_id, Integer, required: false
+
+    @user = User.find(params[:user_id]) if params[:user_id]
+  end
+
+  def update
+    param! :user, Hash, required: true
+
+    @user = currnt_user.update(user_params)
   end
 
   def auth_apply
@@ -31,5 +40,11 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit([:name, :sex, :nickname,
+      address_attributes: [:tel, :zip, :fax, :url, :detail_address, :phone, :province_id, :city_id, :country_id, :district_id, :email, :qq, :wechat, :wangwang, :id]
+    ])
   end
 end
