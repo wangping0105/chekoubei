@@ -31,7 +31,7 @@ namespace :demo do
 
   desc 'used brand'
   task used_brand: :environment do
-    used_brands = %w(奥迪 标致 本田 宝马 奔驰 别克 比亚迪 奔腾 宝骏 北汽 长安 长城 大众 东风 道奇 东风风神 东风小康 东风风行 东风风度 东风风光 丰田 福特 菲亚特 广汽传祺 观致 海马 红旗 哈弗 华颂 吉利 Jeep 江淮 江铃 铃木 猎豹 陆丰 MINI 马自达 纳智捷 奇瑞 起亚 启辰 荣威 日产 smart 斯巴鲁 斯柯达 三菱 沃尔沃 五菱 现代 雪佛兰 雪铁龙 众泰)
+    used_brands = %w(奥迪 标致 本田 宝马 奔驰 别克 比亚迪 奔腾 宝骏 北汽 长安 长城 大众 东风 道奇 东风风神 东风小康 东风风行 东风风度 东风风光 丰田 福特 菲亚特 广汽传祺 观致 海马 红旗 哈弗 华颂 吉利 Jeep 江淮 江铃 铃木 猎豹 陆风 MINI 马自达 纳智捷 奇瑞 起亚 启辰 荣威 日产 smart 斯巴鲁 斯柯达 三菱 沃尔沃 五菱 现代 雪佛兰 雪铁龙 众泰)
     Brand.where.not(name: used_brands).delete_all
     p 'delete extra brand'
     used_brands.each{|name| Brand.find_or_create_by(name: name, brand_type: Brand.brand_types[:car])}
