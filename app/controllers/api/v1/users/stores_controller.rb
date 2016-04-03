@@ -49,7 +49,7 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
 
     render json: {
       code: 0,
-      data: data,
+      data: ActiveModel::ArraySerializer.new(@brands, each_serializer: BrandSerializer),
       total_count: @brands.total_count,
       per_page: (params[:per_page]).to_i,
       page: (params[:page]).to_i

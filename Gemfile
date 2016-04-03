@@ -54,6 +54,9 @@ gem 'rucaptcha'
 gem 'responders', '~> 2.0'
 #
 gem "paperclip"
+#
+gem "iconv", "~> 1.0.3"
+gem 'mechanize'
 group :development do
   gem 'pry-rails'
   gem 'pry-remote'
