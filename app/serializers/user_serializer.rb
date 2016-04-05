@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   include NonullSerializerable
 
   self.root = false
-  attributes :id, :created_at, :name, :phone, :is_store_user, :file_url, :tags, :im_user
+  attributes :id, :name, :phone, :is_store_user, :file_url, :tags, :im_user, :created_at
 
   #string型属性
   self.stringify_keys = [:created_at, :name, :phone]

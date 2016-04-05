@@ -8,9 +8,12 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
   end
 
   def update
-    param! :user, Hash, required: true
-
-    @user = currnt_user.update(user_params)
+    param! :user, Hash, required: true do |u|
+      u.param! :name, String, required: true
+    end
+    unless current_user.update(user_params)
+      raise EntityValidationError.new(current_user)
+    end
   end
 
   def auth_apply
@@ -43,7 +46,7 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params.require(:user).permit([:name, :sex, :nickname,
+    params.require(:user).permit([:name, :sex,
       address_attributes: [:tel, :zip, :fax, :url, :detail_address, :phone, :province_id, :city_id, :country_id, :district_id, :email, :qq, :wechat, :wangwang, :id]
     ])
   end
