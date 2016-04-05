@@ -6,7 +6,7 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>#</th>
+        <th>logo</th>
         <th>名称</th>
         <th>门店数量</th>
         <th>首字母</th>
@@ -16,7 +16,7 @@
       <tbody>
       <%@brands.each_with_index do |b, i|  %>
           <tr>
-            <td><%= i+1 %></td>
+            <td><img src="<%="/system/brand_logos/#{b.pinyin}.png" %>" /></td>
             <td><%= b.name %></td>
             <td><%= b.stores_count.to_i %></td>
             <td><%= b.pinyin[0].upcase %></td>

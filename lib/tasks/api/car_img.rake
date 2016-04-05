@@ -9,7 +9,7 @@ namespace :stores do
     agent = Mechanize.new
     Brand.all.each do |b|
       name = "#{b.pinyin}.png"
-      file = File.new("#{Rails.root.to_s}/public/store_imgs/#{name}") if File.exist?("#{Rails.root.to_s}/public/store_imgs/#{name}")
+      file = File.new("#{Rails.root.to_s}/public/system/brand_logos/#{name}") if File.exist?("#{Rails.root.to_s}/public/system/brand_logos/#{name}")
       begin
 	    if !file.present? 
 	        _url = brands_in_bitauto.select{|br| br[:name] == b.name}[0][:url]
@@ -19,7 +19,7 @@ namespace :stores do
 		    img_url = page.search( ".//img[@alt='logo']/@src").first.try(:value)
 		    
 
-	        system("cd #{Rails.root.to_s}/public/store_imgs/ && wget -O #{name} #{img_url}") if img_url.present?
+	        system("cd #{Rails.root.to_s}/public/system/brand_logos/ && wget -O #{name} #{img_url}") if img_url.present?
 	        sleep 1
 	    else
 	    	p "skip #{b.name}"
