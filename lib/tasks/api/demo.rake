@@ -122,6 +122,13 @@ namespace :demo do
     end
   end
 
+  desc 'update_sub_type'
+  task update_sub_type: :environment do
+    User.transaction do
+      Attachment.where(attachmentable_type: "Store").update_all(sub_type: 'image')
+    end
+  end
+
   def add_attachment(entity, file_path= "#{Rails.root.to_s}/app/assets/images/demo.jpg")
     if entity
       file = File.new(file_path)

@@ -83,8 +83,12 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">图片</label>
         <div class="col-sm-10" id="file_areas">
-          <% @store.attachments.each do |a| %>
-            <img src="<%= a.file_url %>" width="200"/>
+          <% @store.image_attachments.each do |a| %>
+            <span class="image_attachment">
+              <img src="<%= a.file_url %>" width="200"/>
+              <input type="hidden" name="image_attachment_ids[]" value="<%= a.id %>"/>
+              <button type="button">X </button>
+            </span>
           <%end %>
           <input class="form-control" type="file" name="file[]" >
         </div>
@@ -156,5 +160,9 @@
 
   $("#add_file").on("click", function () {
     $("#file_areas").append('<input class="form-control" type="file" name="file[]" >')
+  })
+
+  $(".image_attachment button").on("click", function(){
+    $(this).parent().remove();
   })
 </script>

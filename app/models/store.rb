@@ -10,8 +10,6 @@ class Store < ActiveRecord::Base
   has_many :store_cars
   has_many :cars, through: :store_cars
 
-  accepts_nested_attributes_for :attachments, allow_destroy: true
-
   has_many :image_attachments, -> { where(sub_type: 'image') } , class_name: 'Attachment', as: :attachmentable
 
   belongs_to :brand, counter_cache: true

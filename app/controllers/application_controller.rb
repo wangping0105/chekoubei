@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :default_page_title,  :store_location
   before_action :authenticate_user!
   include ApplicationHelper
+  include Api::V1::AttachmentHelper
 
   before_action do
     if Rails.env == "development"

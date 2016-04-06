@@ -3,6 +3,7 @@ class Api::V1::BaseController < ActionController::Base
   include Api::IkParamsProcessable
   include Api::IkAuthenticateable
   include Api::IkRescueable
+  include Api::V1::AttachmentHelper
 
   helper_method :current_user
   before_action :authenticate!

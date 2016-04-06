@@ -28,7 +28,7 @@ class StoresController < ApplicationController
     Store.transaction do
       if @store.save
         _files.each do |file|
-          Attachment.create(file: file, user: current_user, attachmentable: @store)
+          Attachment.create(file: file, user: current_user, attachmentable: @store, sub_type: 'image')
         end
         # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
         flash[:success] = "门店创建成功！"
@@ -49,8 +49,9 @@ class StoresController < ApplicationController
 
     Store.transaction do
       if @store.update(store_params.merge({business_hours: [business_hours_start, business_hours_end]}))
+        update_attachments_by(@store, {image_attachment_ids: 'image'})
         _files.each do |file|
-          Attachment.create(file: file, user: current_user, attachmentable: @store)
+          Attachment.create(file: file, user: current_user, attachmentable: @store, sub_type: 'image')
         end
         # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
         flash[:success] = "门店更新成功！"
