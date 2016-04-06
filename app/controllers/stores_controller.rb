@@ -14,6 +14,7 @@ class StoresController < ApplicationController
 
   def new
     @store = Store.new
+    @store.build_address
     @brands = Brand.all.map{|b| [b.name, b.id]}
     @store_categories = StoreCategory.all.map{|b| [b.name, b.id]}
   end
