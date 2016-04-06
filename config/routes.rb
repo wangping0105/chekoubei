@@ -38,4 +38,8 @@ Rails.application.routes.draw do
       put :pass_auth
     end
   end
+
+  namespace :stores do
+
+  end
 end

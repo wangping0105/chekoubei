@@ -12,10 +12,9 @@
   <% if current_store %>
   <ul class="nav nav-sidebar">
     <li ><h3>门店管理</h3></li>
-    <li><a href="">我的门店</a></li>
-    <li><a href="">Nav item again</a></li>
-    <li><a href="">One more nav</a></li>
-    <li><a href="">Another nav item</a></li>
+    <li class="<%= active_by('stores') %>"><a href="/stores/<%= current_store.id %>">我的门店</a></li>
+    <li><a href="">===</a></li>
+    <li><a href="">===</a></li>
     <li><a href="<%= session_path(current_user.id) %>", data-method="delete">退出</a></li>
   </ul>
   <%end %>

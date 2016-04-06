@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
-  before_action :set_store, only: [:show]
+  before_action :set_store, only: [:show, :update]
+  before_action :is_super_admin?, except: [:show]
 
   def index
     @stores = Store.includes(:attachments, :brand, :store_category, address: [:district])
@@ -7,6 +8,8 @@ class StoresController < ApplicationController
   end
 
   def show
+    @brands = Brand.all.map{|b| [b.name, b.id]}
+    @store_categories = StoreCategory.all.map{|b| [b.name, b.id]}
   end
 
   def new
@@ -36,6 +39,28 @@ class StoresController < ApplicationController
       end
     end
   
+  end
+
+  def update
+    _files = params[:file] || []
+
+    business_hours_start = params[:business_hours_start].to_s
+    business_hours_end = params[:business_hours_end]
+
+    Store.transaction do
+      if @store.update(store_params.merge({business_hours: [business_hours_start, business_hours_end]}))
+        _files.each do |file|
+          Attachment.create(file: file, user: current_user, attachmentable: @store)
+        end
+        # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
+        flash[:success] = "门店更新成功！"
+        redirect_to store_path(@store.id)
+      else
+        flash[:success] = "门店更新失败！#{@store.errors.full_messages}"
+        redirect_to new_store_path
+      end
+    end
+
   end
 
   def get_address_options
