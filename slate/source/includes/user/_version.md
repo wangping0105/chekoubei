@@ -10,6 +10,8 @@
 --------- | ------- | -----------
 device | true | in ['android', 'ios']
 
+- 其中的upgrade 有 [:notice, :suggest, :force] 三种值 升级消息,建议升级,强制升级,为空则不处理
+
 > 返回数据示例
 
 ```json
