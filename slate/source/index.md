@@ -13,6 +13,7 @@ includes:
   - user/auth
   - user/user
   - user/stores
+  - user/version
   - attachment
   - errors
 

@@ -32,6 +32,12 @@ namespace :api, defaults: { format: :json } do
           post :auth_apply
         end
       end
+
+      resources :versions do
+        collection do
+          get :lastest_version
+        end
+      end
     end
     resources :attachments do
       collection do
