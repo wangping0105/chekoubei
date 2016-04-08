@@ -1,5 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
   <h2 class="sub-header"><%= @store.name %>的车辆</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to '添加车辆', new_store_stores_car_path, class: "btn btn-sm btn-primary"%>
+    </div>
+  </div>
   <div class="table-responsive" ng-controller="home">
     <table class="table table-striped">
       <thead>
@@ -28,6 +33,9 @@
             <td><img width="100" src="<%= car.attachments.first.try(:file_url)%>" ></td>
             <td><%= "#{car.user.name}(#{car.user.phone})"%></td>
           </tr>
+      <%end %>
+      <%unless @cars.present? %>
+        <tr><td colspan="9">暂无车辆</td></tr>
       <%end %>
       </tbody>
     </table>

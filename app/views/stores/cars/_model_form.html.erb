@@ -1,0 +1,67 @@
+<div>
+  <%= form_for(@car, url: store_stores_cars_path, html: { class: "form-horizontal", multipart: true}) do |f| %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">标题</label>
+        <div class="col-sm-10">
+          <%= text_field_tag :title, '',class:"form-control"%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">型号</label>
+        <div class="col-sm-10">
+          <%= f.text_field :model_no, class:"form-control", readonly: (@car.new_record? ? false: true), require: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">颜色</label>
+        <div class="col-sm-10">
+          <%= f.text_field :color,  { class: "form-control" }%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">里程</label>
+        <div class="col-sm-10">
+          <%= f.text_field :distance,  { class: "form-control", require: true }%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">上牌时间</label>
+        <div class="col-sm-10">
+          <%= f.text_field :on_time,  { class: "form-control", require: true }%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">图片</label>
+        <div class="col-sm-10" id="file_areas">
+          <% @car.attachments.each do |a| %>
+            <span class="image_attachment">
+              <img src="<%= a.file_url %>" width="200"/>
+              <input type="hidden" name="image_attachment_ids[]" value="<%= a.id %>"/>
+              <button type="button">X </button>
+            </span>
+          <%end %>
+          <input class="form-control" type="file" name="file[]" >
+        </div>
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10" id="file_areas">
+          <button type="button" id="add_file">添加</button>
+        </div>
+      </div>
+
+      <%= f.submit '提交', class: "btn btn-primary float-r" %>
+  <% end %>
+</div>
+<script>
+  $("#add_file").on("click", function () {
+    $("#file_areas").append('<input class="form-control" type="file" name="file[]" >')
+  })
+
+  $(".image_attachment button").on("click", function(){
+    $(this).parent().remove();
+  })
+</script>

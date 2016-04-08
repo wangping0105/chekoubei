@@ -6,6 +6,6 @@ module ApplicationHelper
   end
 
   def word_limit(words, length: 100)
-    words.length > length ? "#{words[0..99]}..." : words
+    words.to_s.length > length ? "#{words[0..99]}..." : words.to_s
   end
 end

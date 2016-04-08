@@ -39,7 +39,6 @@ class StoresController < ApplicationController
         redirect_to new_store_path
       end
     end
-  
   end
 
   def update
