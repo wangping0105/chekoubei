@@ -3,8 +3,8 @@
       <ul class="nav nav-sidebar">
         <li ><h3>牛逼的超管</h3></li>
         <li class="<%= active_by('home') %>"><a href="/">管理首页 <span class="sr-only">(current)</span></a></li>
-        <li class="<%= active_by('cars') %>"><a href="/cars">车辆管理</a></li>
         <li class="<%= active_by('stores') %>"><a href="/stores">门店管理</a></li>
+        <li class="<%= active_by('cars') %>"><a href="/cars">车辆管理</a></li>
         <li class="<%= active_by('auth_applies') %>"><a href="/auth_applies">申请管理</a></li>
         <li class="<%= active_by('tags') %>"><a href="/tags">标签管理</a></li>
       </ul>
@@ -13,7 +13,7 @@
   <ul class="nav nav-sidebar">
     <li ><h3>门店管理</h3></li>
     <li class="<%= active_by('stores') %>"><a href="/stores/<%= current_store.id %>">我的门店</a></li>
-    <li><a href="">===</a></li>
+    <li class="<%= active_by('stores/cars') %>"><a href="<%= store_stores_cars_path(current_store.id) %>">门店车列表</a></li>
     <li><a href="">===</a></li>
     <li><a href="<%= session_path(current_user.id) %>", data-method="delete">退出</a></li>
   </ul>

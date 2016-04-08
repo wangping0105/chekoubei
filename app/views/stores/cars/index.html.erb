@@ -1,0 +1,38 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header"><%= @store.name %>的车辆</h2>
+  <div class="table-responsive" ng-controller="home">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>品牌</th>
+        <th>型号</th>
+        <th>颜色</th>
+        <th>里程</th>
+        <th>上牌时间</th>
+        <th>图片</th>
+        <th>所属用户</th>
+        <th>标题</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%@cars.each_with_index do |car, i|  %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= car.brand.name %></td>
+            <td><%= car.model_no %></td>
+            <td><%= car.color%></td>
+            <td><%= car.distance.to_i/1000 %>km</td>
+            <td><%= car.on_time%></td>
+            <td><img width="100" src="<%= car.attachments.first.try(:file_url)%>" ></td>
+            <td><%= "#{car.user.name}(#{car.user.phone})"%></td>
+            <td><%= car.store_car.title %></td>
+          </tr>
+      <%end %>
+      </tbody>
+    </table>
+    <%= paginate @cars %>
+  </div>
+</div>
+
+
