@@ -19,17 +19,20 @@ password | true | mi码
   "data": {
     "user": {
       "id": 1,
-      "created_at": "2016-03-03T03:15:55.000Z",
-      "name": "admin",
-      "phone": "15921076831",
-      "is_store_user": false,
+      "name": "平神",
+      "phone": "15921076830",
+      "is_store_user": true,
+      "identify_status": "ok", # ok 就是通过验证, not 就是没通过
+      "file_url": "/system/attachments/files/000/000/001/original/demo.jpg?1459908250", # 图片
+      "tags": [],
       "im_user": {
-        "username": "qw",
-        "password": "123",
-        "nickname": "asda"
-      }
+        "username": "user1",
+        "password": "123456",
+        "nickname": "平神"
+      },
+      "created_at": "2016-04-06T02:04:09.000Z"
     },
-    "user_token": "019c0438d2843820d087db7ba1a41b33da97500d"
+    "user_token": "3e761f4b31d3299187814d7385998f0c"
   }
 }
 ```
