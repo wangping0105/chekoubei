@@ -29,7 +29,9 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
             invite_phones: params[:invite_phones]
         }
     }
-    if @user.auth_apply
+    raise EntityValidationError.new("您已经是认证用户!") if @user.ok?
+
+    if @user.auth_apply && @user.auth_apply.untreated?
       raise EntityValidationError.new("您已经申请认证!")
     else
       if AuthApply.create(attr)
