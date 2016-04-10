@@ -15,12 +15,13 @@ class Api::V1::AttachmentsController < Api::V1::BaseController
   #   end
   # end
   def upload
-    permitted_params = attachment_params
+    permitted_params = params[:attachment]
     file = permitted_params.delete(:file)
+
     attachment_params = {
       :name => file[:name],
       :type => file[:type],
-      :headers => file[:headers],
+      :headers => file[:headers] || "",
       :tempfile => file[:tempfile]
     }
     tempfile = ActionDispatch::Http::UploadedFile.new(attachment_params)
