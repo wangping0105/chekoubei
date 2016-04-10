@@ -1,4 +1,4 @@
-class Api::V1::Users::StoreCategoriesController < ApplicationController
+class Api::V1::Users::StoreCategoriesController < Api::V1::BaseController
   def index
     @store_categories = StoreCategory.limit(5)
 

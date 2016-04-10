@@ -39,6 +39,7 @@ namespace :api, defaults: { format: :json } do
         end
       end
     end
+
     resources :attachments do
       collection do
         post :upload
