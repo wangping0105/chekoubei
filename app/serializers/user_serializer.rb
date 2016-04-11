@@ -16,7 +16,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def file_url
-    return User::TEAVHER_URL unless object.attachment
+    return "" unless object.attachment
     object.attachment.file_url
   end
 
