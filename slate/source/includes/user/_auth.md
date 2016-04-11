@@ -92,7 +92,7 @@ password | true | mi码
 ## 修改密码
 ### HTTP Request
 
-`POST  /api/v1/users/auth/change_password`
+`PUT  /api/v1/users/auth/change_password`
 
 ### URL Parameters
 
