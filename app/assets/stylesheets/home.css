@@ -106,7 +106,7 @@ body {
 
 .custome_popover_div{
     display: table-cell;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;

@@ -24,20 +24,27 @@ class StoresController < ApplicationController
     
     business_hours_start = params[:business_hours_start].to_s
     business_hours_end = params[:business_hours_end]
-    
-    @store = Store.new(store_params.merge( {business_hours: [business_hours_start, business_hours_end]} ))
-    Store.transaction do
-      if @store.save
-        _files.each do |file|
-          Attachment.create(file: file, user: current_user, attachmentable: @store, sub_type: 'image')
+
+    user = User.find_by(phone: params[:phone])
+    if user.present? && user.store_id.nil?
+      @store = Store.new(store_params.merge( {business_hours: [business_hours_start, business_hours_end]} ))
+      Store.transaction do
+        if @store.save
+          _files.each do |file|
+            Attachment.create(file: file, user: current_user, attachmentable: @store, sub_type: 'image')
+          end
+          user.update_columns(store_id: @store.id, role: User.roles[:store_admin])
+          # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
+          flash[:success] = "门店创建成功！"
+          redirect_to stores_path
+        else
+          flash[:error] = "门店创建失败！#{@store.errors.full_messages}"
+          redirect_to new_store_path
         end
-        # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
-        flash[:success] = "门店创建成功！"
-        redirect_to stores_path
-      else
-        flash[:success] = "门店创建失败！#{@store.errors.full_messages}"
-        redirect_to new_store_path
       end
+    else
+      flash[:error] = "管理员手机号帐号不存在或者该手机号已经拥有门店!"
+      redirect_to new_store_path
     end
   end
 

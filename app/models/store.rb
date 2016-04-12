@@ -9,6 +9,7 @@ class Store < ActiveRecord::Base
   belongs_to :store_category#, through: :store_category_relation 一个门店对应一个类型
   has_many :store_cars
   has_many :cars, through: :store_cars
+  has_one :store_admin, -> { where(role: User.roles[:store_admin])}, class_name: 'User', foreign_key: :user_id
 
   has_many :image_attachments, -> { where(sub_type: 'image') } , class_name: 'Attachment', as: :attachmentable
 
