@@ -33,7 +33,7 @@ class StoresController < ApplicationController
           _files.each do |file|
             Attachment.create(file: file, user: current_user, attachmentable: @store, sub_type: 'image')
           end
-          user.update_columns(store_id: @store.id, role: User.roles[:store_admin])
+          user.update_columns(store_id: @store.id, role: User.roles[:store_admin], identify_status: User.identify_statuses[:ok])
           # StoreCategoryRelation.create(store_id: @store.id, store_category_id: params[:store_category_id])一个门店对应一个类型
           flash[:success] = "门店创建成功！"
           redirect_to stores_path
