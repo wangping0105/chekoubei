@@ -59,83 +59,155 @@ per_page | fasle | 每页数量
 ```json
 {
   "code": 0,
-	"banner": {
-		  "id": 1,
-		  "name": "1号test奥迪4s店",
-		  "short_name": "四牌楼奥迪",
-		  "introduction": "专业修车一百年",
-		  "store_type": "",
-		  "level": 1,
-		  "order_count": 0,
-		  "store_category_name": "新车店",
-		  "brand_name": "奥迪",
-		  "address": {
-		    "id": 1,
-		    "province": {
-		      "id": 9,
-		      "name": "上海",
-		      "pinyin": "shanghai",
-		      "country_id": 4
-		    },
-		    "city": {
-		      "id": 73,
-		      "name": "上海市",
-		      "pinyin": "shanghai",
-		      "province_id": 9
-		    },
-		    "district": {
-		      "id": 729,
-		      "name": "宝山区",
-		      "pinyin": null,
-		      "city_id": 73
-		    },
-		    "detail_address": "宝山区高境一村138号",
-		    "lat": 31.3197,
-		    "lng": 121.477
-		  },
-		  "image_attachments": [
-		    {
-		      "id": 4,
-		      "file_url": "/system/attachments/files/000/000/004/original/demo.jpg?1459937772",
-		      "name": "",
-		      "file_file_name": "demo.jpg",
-		      "file_content_type": "image/jpeg",
-		      "file_file_size": 135923,
-		      "user_name": "平神",
-		      "attachmentable_id": 1,
-		      "attachmentable_type": "Store",
-		      "upload_time": "2016-04-06 14:12"
-		    },
-		    {
-		      "id": 6,
-		      "file_url": "/system/attachments/files/000/000/006/original/22.jpg?1459951924",
-		      "name": "",
-		      "file_file_name": "22.jpg",
-		      "file_content_type": "image/jpeg",
-		      "file_file_size": 8778,
-		      "user_name": "平神",
-		      "attachmentable_id": 1,
-		      "attachmentable_type": "Store",
-		      "upload_time": "2016-04-06 14:12"
-		    }
-		  ],
-		  "distance": "0m"
-		},
-  "data": [
-    {
+  "data": {
+    "banner": {
       "id": 1,
-      "name": "奥迪",
-      "logo":"/assets/brand_logos/aodi.png"
+      "name": "1号test奥迪4s店",
+      "short_name": "四牌楼奥迪",
+      "introduction": "专业修车一百年",
+      "store_type": "",
+      "level": 1,
+      "order_count": 0,
+      "store_category_name": "新车店",
+      "brand_name": "奥迪",
+      "address": {
+        "id": 1,
+        "province": {
+          "id": 9,
+          "name": "上海",
+          "pinyin": "shanghai",
+          "country_id": 4
+        },
+        "city": {
+          "id": 73,
+          "name": "上海市",
+          "pinyin": "shanghai",
+          "province_id": 9
+        },
+        "district": {
+          "id": 729,
+          "name": "宝山区",
+          "pinyin": null,
+          "city_id": 73
+        },
+        "detail_address": "宝山区高境一村138号",
+        "lat": 31.3197,
+        "lng": 121.477
+      },
+      "image_attachments": [
+        {
+          "id": 4,
+          "file_url": "/system/attachments/files/000/000/004/original/demo.jpg?1459937772",
+          "name": "",
+          "file_file_name": "demo.jpg",
+          "file_content_type": "image/jpeg",
+          "file_file_size": 135923,
+          "user_name": "平神",
+          "attachmentable_id": 1,
+          "attachmentable_type": "Store",
+          "upload_time": "2016-04-06 14:12"
+        },
+        {
+          "id": 6,
+          "file_url": "/system/attachments/files/000/000/006/original/22.jpg?1459951924",
+          "name": "",
+          "file_file_name": "22.jpg",
+          "file_content_type": "image/jpeg",
+          "file_file_size": 8778,
+          "user_name": "平神",
+          "attachmentable_id": 1,
+          "attachmentable_type": "Store",
+          "upload_time": "2016-04-06 14:12"
+        }
+      ],
+      "distance": "0m"
     },
-    {
-      "id": 9,
-      "name": "大众",
-      "logo":"/assets/brand_logos/aodi.png"
-    }
-  ],
-  "total_count": 2,
-  "per_page": 0,
-  "page": 0
+    "brands": [
+      {
+        "id": 2,
+        "name": "AC Schnitzer",
+        "logo": "/system/brand_logos/ACSchnitzer.png"
+      },
+      {
+        "id": 1,
+        "name": "奥迪",
+        "logo": "/system/brand_logos/aodi.png"
+      },
+      {
+        "id": 3,
+        "name": "Artega",
+        "logo": "/system/brand_logos/Artega.png"
+      },
+      {
+        "id": 7,
+        "name": "巴博斯",
+        "logo": "/system/brand_logos/babosi.png"
+      },
+      {
+        "id": 5,
+        "name": "宝马",
+        "logo": "/system/brand_logos/baoma.png"
+      },
+      {
+        "id": 6,
+        "name": "保时捷",
+        "logo": "/system/brand_logos/baoshijie.png"
+      },
+      {
+        "id": 8,
+        "name": "宝沃",
+        "logo": "/system/brand_logos/baowo.png"
+      },
+      {
+        "id": 4,
+        "name": "奔驰",
+        "logo": "/system/brand_logos/benchi.png"
+      },
+      {
+        "id": 9,
+        "name": "大众",
+        "logo": "/system/brand_logos/dazhong.png"
+      },
+      {
+        "id": 11,
+        "name": "卡尔森",
+        "logo": "/system/brand_logos/kaersen.png"
+      },
+      {
+        "id": 10,
+        "name": "KTM",
+        "logo": "/system/brand_logos/KTM.png"
+      },
+      {
+        "id": 12,
+        "name": "MINI",
+        "logo": "/system/brand_logos/MINI.png"
+      },
+      {
+        "id": 13,
+        "name": "欧宝",
+        "logo": "/system/brand_logos/oubao.png"
+      },
+      {
+        "id": 14,
+        "name": "smart",
+        "logo": "/system/brand_logos/smart.png"
+      },
+      {
+        "id": 15,
+        "name": "STARTECH",
+        "logo": "/system/brand_logos/STARTECH.png"
+      },
+      {
+        "id": 16,
+        "name": "泰卡特",
+        "logo": "/system/brand_logos/taikate.png"
+      }
+    ]
+  },
+  "total_count": 16,
+  "per_page": 25,
+  "page": 1
 }
 ```
 
