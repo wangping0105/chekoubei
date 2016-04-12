@@ -14,6 +14,7 @@ includes:
   - user/user
   - user/stores
   - user/version
+  - user/car
   - attachment
   - errors
 

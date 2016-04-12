@@ -2,7 +2,9 @@ class Api::V1::Users::CarsController < Api::V1::BaseController
   before_action :set_default_page_params, only: [ :index]
 
   def index
+    param! :car_type, String, required: false, in: ['old_car', 'new_car']
     @cars = Car.includes(:user, :attachments, :store)
+    @cars = filter_sort(@cars)
     @cars = filter_page(@cars)
 
     render json:{code: 0, data: ActiveModel::ArraySerializer.new(@cars, each_serializer: CarSerializer)}
@@ -28,5 +30,13 @@ class Api::V1::Users::CarsController < Api::V1::BaseController
   private
   def car_params
     params_encoded(params.require(:car).permit(:brand_id, :model_no, :color, :distance, :on_time, :description, :car_type))
+  end
+
+  def filter_sort(relation)
+    relation = relation.where(car_type: Car.car_types[params[:car_type]]) if params[:car_type].present?
+    relation = relation.where("model_no like ?", "%#{params[:query]}%") if params[:query].present?
+    relation = relation.order(id: :desc)
+
+    relation
   end
 end
