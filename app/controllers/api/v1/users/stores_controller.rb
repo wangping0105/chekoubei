@@ -45,10 +45,12 @@ class Api::V1::Users::StoresController < Api::V1::BaseController
 
     @brands = Brand.where(brand_type: brand_type).order(pinyin: :asc).
       where("stores_count > 0").page(params[:page]).per(params[:per_page])
-    data = @brands.map{|s|{id: s.id, name: s.name}}
+    # data = @brands.map{|s|{id: s.id, name: s.name}}
+    @banner = Store.where(brand_id: @brands.pluck(:id)).order(order_count: :desc).first
 
     render json: {
       code: 0,
+      banner: SimpleStoreSerializer.new(@banner),
       data: ActiveModel::ArraySerializer.new(@brands, each_serializer: BrandSerializer),
       total_count: @brands.total_count,
       per_page: (params[:per_page]).to_i,

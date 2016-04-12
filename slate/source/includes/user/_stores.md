@@ -59,6 +59,68 @@ per_page | fasle | 每页数量
 ```json
 {
   "code": 0,
+	"banner": {
+		  "id": 1,
+		  "name": "1号test奥迪4s店",
+		  "short_name": "四牌楼奥迪",
+		  "introduction": "专业修车一百年",
+		  "store_type": "",
+		  "level": 1,
+		  "order_count": 0,
+		  "store_category_name": "新车店",
+		  "brand_name": "奥迪",
+		  "address": {
+		    "id": 1,
+		    "province": {
+		      "id": 9,
+		      "name": "上海",
+		      "pinyin": "shanghai",
+		      "country_id": 4
+		    },
+		    "city": {
+		      "id": 73,
+		      "name": "上海市",
+		      "pinyin": "shanghai",
+		      "province_id": 9
+		    },
+		    "district": {
+		      "id": 729,
+		      "name": "宝山区",
+		      "pinyin": null,
+		      "city_id": 73
+		    },
+		    "detail_address": "宝山区高境一村138号",
+		    "lat": 31.3197,
+		    "lng": 121.477
+		  },
+		  "image_attachments": [
+		    {
+		      "id": 4,
+		      "file_url": "/system/attachments/files/000/000/004/original/demo.jpg?1459937772",
+		      "name": "",
+		      "file_file_name": "demo.jpg",
+		      "file_content_type": "image/jpeg",
+		      "file_file_size": 135923,
+		      "user_name": "平神",
+		      "attachmentable_id": 1,
+		      "attachmentable_type": "Store",
+		      "upload_time": "2016-04-06 14:12"
+		    },
+		    {
+		      "id": 6,
+		      "file_url": "/system/attachments/files/000/000/006/original/22.jpg?1459951924",
+		      "name": "",
+		      "file_file_name": "22.jpg",
+		      "file_content_type": "image/jpeg",
+		      "file_file_size": 8778,
+		      "user_name": "平神",
+		      "attachmentable_id": 1,
+		      "attachmentable_type": "Store",
+		      "upload_time": "2016-04-06 14:12"
+		    }
+		  ],
+		  "distance": "0m"
+		},
   "data": [
     {
       "id": 1,
