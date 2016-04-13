@@ -14,6 +14,9 @@ module HuanXin
         client_secret: client_secret
       }
       r = post("#{api_path}/token", attr)
+    rescue
+      puts "环信token为获取,请重启!"
+      {}
     end
 
     def create_im_user(user = nil)
@@ -105,5 +108,5 @@ module HuanXin
   HuanXinInst.api_path = "https://a1.easemob.com/carkoubei/carkoubei"
   HuanXinInst.client_id = "YXA6HIeDoPJAEeWs9gcxUaLXbg"
   HuanXinInst.client_secret = "YXA6xG_zZCcZOhkRRsxbM-mc9PMWiFk"
-  HuanXinInst.token = HuanXinInst.get_token[:body]['access_token']
+  HuanXinInst.token = HuanXinInst.get_token[:body]['access_token'] if HuanXinInst.get_token[:body]
 end
