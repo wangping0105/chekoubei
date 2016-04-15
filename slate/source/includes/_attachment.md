@@ -8,10 +8,7 @@
 
 字段名 | 是否必填 | 描述
 --------- | ------- | -----------
-attachment[file][filename] | true | 文件名
-attachment[file][type] | true | 文件类型(image/png)
-attachment[file][headers] | true | 文件头
-attachment[file][tempfile] | true | 文件流
+attachment[file] | true | 文件名
 
 > 返回数据示例
 

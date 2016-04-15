@@ -18,16 +18,15 @@ class Api::V1::AttachmentsController < Api::V1::BaseController
     permitted_params = params[:attachment]
     file = permitted_params.delete(:file)
 
-    attachment_params = {
-      :name => file[:name],
-      :type => file[:type],
-      :headers => file[:headers] || "",
-      :tempfile => file[:tempfile]
-    }
-    tempfile = ActionDispatch::Http::UploadedFile.new(attachment_params)
-
-    attachment = Attachment.create(file: tempfile, user: current_user)
-    {
+    # attachment_params = {
+    #   :name => file[:name],
+    #   :type => file[:type],
+    #   :headers => file[:headers] || "",
+    #   :tempfile => file[:tempfile]
+    # }
+    # tempfile = ActionDispatch::Http::UploadedFile.new(attachment_params)
+    attachment = Attachment.create(file: file, user: current_user)
+    render json:{
       code: 0,
       data: AttachmentSerializer.new(attachment)
     }
