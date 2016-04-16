@@ -13,6 +13,7 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
     end
 
     unless current_user.update(user_params)
+      update_attachments_by(current_user, {attachment_ids: nil})
       raise EntityValidationError.new(current_user)
     end
   end

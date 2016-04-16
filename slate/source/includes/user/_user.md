@@ -42,7 +42,7 @@ user_id | false | user's id, replace :id in 'HTTP Request'
 --------- | ------- | -----------
 user_id | false | user's id, replace :id in 'HTTP Request'
 user[name] | true | 用户名
-
+attachment_ids[] | false | 附件id数组
 > 返回数据示例
 
 ```json
