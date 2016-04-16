@@ -11,6 +11,7 @@ class Api::V1::Users::UsersController < Api::V1::BaseController
     param! :user, Hash, required: true do |u|
       u.param! :name, String, required: true
     end
+
     unless current_user.update(user_params)
       raise EntityValidationError.new(current_user)
     end

@@ -9,6 +9,8 @@
 字段名 | 是否必填 | 描述
 --------- | ------- | -----------
 attachment[file] | true | 文件名
+attachment[attachmentable_type] | false | 对象类型 比如传 User,具体用到再说
+attachment[attachmentable_id] | false | 对像id
 
 > 返回数据示例
 
