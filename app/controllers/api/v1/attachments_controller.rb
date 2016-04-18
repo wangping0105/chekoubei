@@ -15,10 +15,6 @@ class Api::V1::AttachmentsController < Api::V1::BaseController
   #   end
   # end
   def upload
-    param! :attachment, Hash, required: true do |u|
-      u.param! :file, Hash, required: true
-    end
-
     permitted_params = params[:attachment]
     file = permitted_params.delete(:file)
     attr = {file: file, user: current_user}
