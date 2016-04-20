@@ -13,6 +13,7 @@ class Api::V1::Users::CarsController < Api::V1::BaseController
   def create
     @car = current_user.cars.new(car_params)
     if @car.save
+      create_attachments_by(@car, {attachment_ids: nil})
       render json:{
           code: 0,
           data: CarSerializer.new(@car)

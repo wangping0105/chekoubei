@@ -87,7 +87,7 @@ car_type | true | old_car or new_car
 :on_time |true | 上牌日期 ps: 2015-11-15
 :description | true | 描述
 :car_type | true | new_car, old_car
-
+attachment_ids |false|数组
 > 返回数据示例
 
 ```json
