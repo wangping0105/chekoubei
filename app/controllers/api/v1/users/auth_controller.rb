@@ -64,8 +64,12 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
     code, phone = params[:code], params[:phone]
     sms = SmsCode.find_by(sms_type: SmsCode.sms_types[:change_pwd], phone: phone, code: code)
     if sms && sms.updated_at - 5.minute <= Time.now
-        @user=  User.find_by(phone: phone)
-        @user.update(password: params[:password])
+        @user= User.find_by(phone: phone)
+        if @user
+          @user.update(password: params[:password])
+        else
+          render json: { code: -1, message: "用户不存在" }
+        end
     else
       raise SignupInvalidCaptchaError.new("验证码过期或无效")
     end
