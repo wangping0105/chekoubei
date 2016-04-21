@@ -38,6 +38,7 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
   def sign_up
     param! :phone, String, required: true
     param! :code, String, required: true
+    param! :name, String, required: true
     param! :password, String, required: true
 
     code, phone = params[:code], params[:phone]
@@ -46,7 +47,7 @@ class Api::V1::Users::AuthController < Api::V1::BaseController
     if sms && sms.updated_at - 5.minute <= Time.now
       User.transaction do
         unless User.find_by(phone: phone)
-          @user = User.create(phone: phone, password: params[:password])
+          @user = User.create(phone: phone, password: params[:password], name: params[:name])
         else
           raise SignupInvalidPhoneError.new("该手机号已经存在")
         end
