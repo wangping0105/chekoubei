@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_super_admin?
-  before_action :set_user, only: [:user_tag, :destroy_tag, :pass_auth]
+  before_action :set_user, only: [:user_tag, :destroy_tag, :pass_auth, :dyne_auth]
 
   def index
     @tags = Tag.all
