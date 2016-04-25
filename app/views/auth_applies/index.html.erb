@@ -25,7 +25,8 @@
             <td>
               <% if auth.untreated? %>
                   <%=link_to "去处理", treated_auth_applies_path(user_id: auth.user_id), class: 'btn btn-xs btn-primary' %>
-              <%else %>
+              <%elsif auth.dyne? %>
+              <%else auth.dyne? %>
                   <%=link_to "查看", treated_auth_applies_path(user_id: auth.user_id), class: 'btn btn-xs btn-primary'  %>
               <%end %>
             </td>
