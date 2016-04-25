@@ -32,4 +32,13 @@ class UserSerializer < ActiveModel::Serializer
       nickname: object.im_user.nickname.to_s
     }
   end
+
+  def identify_status
+    return object.identify_status if object.ok?
+    if object.try(:auth_apply).try(:untreated?)
+      "applying"
+    else
+      object.identify_status
+    end
+  end
 end

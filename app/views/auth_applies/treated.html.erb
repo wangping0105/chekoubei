@@ -3,6 +3,8 @@
   <h3 class="sub-header">认证请求人: <%= @auth_apply.user.phone %>-<%= @auth_apply.user.name %>-<%= @auth_apply.true_name %>
       <%if @auth_apply.user.ok? %>
         <span class="color-red">已经认证</span>
+      <%elsif @auth_apply.dyne?%>
+        <span class="color-red">已经拒绝</span>
       <%else %>
         <%=link_to '通过认证', pass_auth_user_path(@auth_apply.user), method: :put, class: 'btn btn-primary' %>
         <%=link_to '拒绝认证', dyne_auth_user_path(@auth_apply.user), method: :put, class: 'btn btn-primary' %>
