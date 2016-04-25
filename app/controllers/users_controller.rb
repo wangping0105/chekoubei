@@ -34,6 +34,16 @@ class UsersController < ApplicationController
       redirect_to treated_auth_applies_path(user_id: @user.id)
     end
   end
+
+  def dyne_auth
+    User.transaction do
+      @user.auth_apply.update(status: AuthApply.statuses[:dyne])
+
+      flash[:error] = "拒绝认证成功"
+      redirect_to treated_auth_applies_path(user_id: @user.id)
+    end
+  end
+
   private
   def set_user
     @user = User.find(params[:id])

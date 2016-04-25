@@ -5,6 +5,7 @@
         <span class="color-red">已经认证</span>
       <%else %>
         <%=link_to '通过认证', pass_auth_user_path(@auth_apply.user), method: :put, class: 'btn btn-primary' %>
+        <%=link_to '拒绝认证', dyne_auth_user_path(@auth_apply.user), method: :put, class: 'btn btn-primary' %>
       <%end %>
   </h3>
   <div class="table-responsive" ng-controller="home">

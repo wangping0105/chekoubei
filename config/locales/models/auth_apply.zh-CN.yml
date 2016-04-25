@@ -11,3 +11,4 @@ zh-CN:
       status:
         untreated: "未处理"
         treated: "已处理"
+        dyne: "已拒绝"
