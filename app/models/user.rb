@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :store
-  has_one :auth_apply
+  has_one :auth_apply, ->{where(status: 0)}
   has_one :api_key
   has_one :im_user
   has_many :user_tags
