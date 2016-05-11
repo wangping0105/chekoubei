@@ -16,7 +16,7 @@
       <tbody>
       <%@brands.each_with_index do |b, i|  %>
           <tr>
-            <td><img src="<%="/system/brand_logos/#{b.pinyin}.png" %>" /></td>
+            <td><img src="<%="/system/brand_logos/#{b.pinyin}.jpg" %>" width="50" /></td>
             <td><%= b.name %></td>
             <td><%= b.stores_count.to_i %></td>
             <td><%= b.pinyin[0].upcase %></td>
