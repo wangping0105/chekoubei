@@ -12,7 +12,7 @@ class AuthAppliesController < ApplicationController
     if @auth_apply
       @invite_users =  User.where(phone: @auth_apply.extra[:invite_phones])
     else
-      flash[:error] = "不存在申请!"
+      flash[:error] = "不存在未处理申请!"
       redirect_to auth_applies_path
     end
   end

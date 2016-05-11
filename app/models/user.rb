@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :store
+  # 未处理的申请,只有一个
   has_one :auth_apply, ->{where(status: 0)}
   has_one :api_key
   has_one :im_user

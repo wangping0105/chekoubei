@@ -1,0 +1,37 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <h2 class="sub-header">用户: <%= @user.name %> [<%= @user.phone %>]</h2>
+  <div class="table-responsive" ng-controller="home">
+    <%= form_for(UserTag.new, url: user_tag_user_path(@user)) do %>
+        <%= hidden_field_tag :module, :user_show %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>标签序号</th>
+            <th>标签名</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user.tags.each_with_index do |tag, i|  %>
+              <tr>
+                <td>标签<%= i+1 %></td>
+                <td><%= tag.name %></td>
+                <td><%=link_to '删除', destroy_tag_user_path(@user, tag_id: tag.id), method: :delete %></td>
+              </tr>
+          <%end %>
+          <%if @tags.size > 0 %>
+              <tr>
+                <td>添加标签</td>
+                <td><%= select_tag(:tag_id, options_for_select(@tags.map{|t| [t.name, t.id]}))%></td>
+                <td><%= button_tag '添加' %></td>
+              </tr>
+          <%else %>
+              <tr>
+                <td colspan="3" align="center">暂无标签内容，请先去<%= link_to '添加标签', tags_path%></td>
+              </tr>
+          <%end %>
+          </tbody>
+        </table>
+    <%end %>
+  </div>
+</div>

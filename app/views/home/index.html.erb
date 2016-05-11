@@ -41,7 +41,7 @@
       <%@users.each_with_index do |user, i|  %>
           <tr>
             <td><%= i+1 %></td>
-            <td><%= user.name %></td>
+            <td><%=link_to user.name, user_path(user) %></td>
             <td><%= user.phone %></td>
             <td><%= I18n.t("enums.user.sex.#{(user.sex || "other")}") %></td>
             <td><%= I18n.t("enums.user.identify_status.#{user.identify_status}") %></td>

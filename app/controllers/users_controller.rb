@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
   before_action :is_super_admin?
-  before_action :set_user, only: [:user_tag, :destroy_tag, :pass_auth, :dyne_auth]
+  before_action :set_user, only: [:user_tag, :destroy_tag, :pass_auth, :dyne_auth, :show]
 
   def index
     @tags = Tag.all
     @tags = filter_page @tags
+  end
+
+  def show
+    @tags = Tag.all
   end
 
   def user_tag
@@ -14,7 +18,12 @@ class UsersController < ApplicationController
    else
      flash[:error] = "标签已经存在"
    end
-   redirect_to treated_auth_applies_path(user_id: @user.id)
+   if params[:module] == "user_show"
+     redirect_to user_path(@user)
+   else
+     redirect_to treated_auth_applies_path(user_id: @user.id)
+   end
+
   end
 
   def destroy_tag
