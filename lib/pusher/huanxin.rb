@@ -15,7 +15,7 @@ module HuanXin
       }
       r = post("#{api_path}/token", attr)
     rescue
-      puts "环信token为获取,请重启!"
+      puts "环信token未获取,请重启!"
       {}
     end
 
@@ -44,9 +44,10 @@ module HuanXin
       get("#{api_path}/users", attr, token)
     end
 
-    def send_penetrate_msg(target_users, msg)
+    # 发送信息
+    def send_penetrate_msg(target_users, msg, target_type = "users" )
       options = {
-        target_type: "users",     # users 给用户发消息,  chatgroups 给群发消息, chatrooms 给聊天室发消息
+        target_type: target_type,     # users 给用户发消息,  chatgroups 给群发消息, chatrooms 给聊天室发消息
         target: target_users, # 注意这里需要用数组,数组长度建议不大于20, 即使只有
         # 一个用户u1或者群组, 也要用数组形式 ['u1'], 给用户发
         # 送时数组元素是用户名,给群组发送时数组元素是groupid
@@ -64,6 +65,27 @@ module HuanXin
       post("#{api_path}/messages", options)
     end
 
+    # 获取所有的群组
+    def get_all_chatgroups
+      result = get("#{api_path}/chatgroups", {}, token)
+      if result[:code] == '200'
+        result
+      else
+        p 'error'
+        result
+      end
+    end
+
+    # 获取所有的群组
+    def get_all_chatrooms
+      result = get("#{api_path}/chatrooms", {}, token)
+      if result[:code] == '200'
+        result
+      else
+        p 'error'
+        result
+      end
+    end
     private
     def post(uri, options)
       response = ""
@@ -76,6 +98,7 @@ module HuanXin
 
       if response.code == '401'
         self.token = HuanXinInst.get_token[:body]['access_token']
+        return post(uri, options)
       end
       {
         code: response.code,
@@ -95,6 +118,7 @@ module HuanXin
 
       if response.code == '401'
         self.token = HuanXinInst.get_token[:body]['access_token']
+        return get(uri, options, token)
       end
       {
         code: response.code,
