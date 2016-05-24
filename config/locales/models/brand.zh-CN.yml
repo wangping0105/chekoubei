@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      brand: "品牌"
+    attributes:
+      brand:
+        id: "ID"
+        name: "名称"
+  enums:
+    brand:
+      brand_type:
+        car: "车"
+        car_insurance: "车险"
+        car_loan: "车贷"
+        car_mortgage: "车抵押"

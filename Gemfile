@@ -31,7 +31,7 @@ gem 'kaminari'
 gem 'emojimmy'
 # To use debugger 调试
 # 我自己的一个gem
-gem 'alidayu_sms'
+gem 'alidayu_sms',  '~> 0.3.1'
 # 时间统计
 gem 'rack-mini-profiler'
 #
@@ -57,6 +57,9 @@ gem "paperclip"
 #
 gem "iconv", "~> 1.0.3"
 gem 'mechanize'
+# 极光
+gem 'jpush'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-remote'

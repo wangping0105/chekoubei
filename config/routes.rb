@@ -10,11 +10,8 @@ Rails.application.routes.draw do
 
   root "home#index"
   resources :sessions
-  resources :home, only:[ :index] do
-    collection do
-      get :brands
-    end
-  end
+  resources :home, only:[ :index]
+  resources :brands
   resources :cars
   resources :tags
   resources :stores do
