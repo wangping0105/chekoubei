@@ -5,7 +5,7 @@ zh-CN:
     attributes:
       brand:
         id: "ID"
-        name: "名称"
+        name: "品牌名称"
   enums:
     brand:
       brand_type:

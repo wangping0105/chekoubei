@@ -17,11 +17,11 @@ module Meijia
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    config.i18n.load_path += Dir[File.join(Rails.root.to_s, 'config', 'locales', '**', '*.{rb,yml}')]
-    
+
     config.autoload_paths += Dir[Rails.root.join("app/models/addresses")] +
       Dir[Rails.root.join("app/models/users")]
 
+    config.i18n.load_path += Dir[File.join(Rails.root.to_s, 'config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:"zh-CN", :zh, :en]
     config.i18n.default_locale = 'zh-CN'
 

@@ -17,7 +17,9 @@ class BrandsController < ApplicationController
   def create
     _files = params[:file] || []
     Brand.transaction do
-      if @brand = Brand.create(brand_params.merge(brand_type: brand_params[:brand_type].to_i))
+      @brand = Brand.new(brand_params.merge(brand_type: brand_params[:brand_type].to_i))
+
+      if @brand.save
         _files.each do |file|
           Attachment.create(file: file, user: current_user, attachmentable: @brand, sub_type: 'image')
         end
@@ -26,11 +28,12 @@ class BrandsController < ApplicationController
         brand_type = Brand::brand_types.detect{|k,v| v.to_s == brand_params[:brand_type]}.first
         redirect_to brands_path(brand_type: "#{brand_type}_brand")
       else
-        flash[:error] = "创建失败！#{@store.errors.full_messages}"
+        flash[:error] = "创建失败！#{@brand.errors.full_messages.join(",")}"
         redirect_to new_brand_path
       end
     end
   end
+
   private
   def brand_params
     params.require(:brand).permit([:name, :brand_type, attachments_attributes: [:file, :_destroy, :id]])

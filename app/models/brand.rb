@@ -14,6 +14,8 @@ class Brand < ActiveRecord::Base
     self.pinyin = PinYin.of_string(self.name).join("") if self.name.present?
   end
 
+  validates :name, uniqueness: { scope: :brand_type, message: "不能重复" }
+
   def logo_url
     return attachment.file_url if attachment.present?
     "/system/brand_logos/#{pinyin}.jpg"
