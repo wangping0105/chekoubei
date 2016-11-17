@@ -14,7 +14,7 @@
     <li ><h3>门店管理</h3></li>
     <li class="<%= active_by('stores') %>"><a href="/stores/<%= current_store.id %>">我的门店</a></li>
     <li class="<%= active_by('stores/cars') %>"><a href="<%= store_stores_cars_path(current_store.id) %>">门店车列表</a></li>
-    <li><a href="">===</a></li>
+    <li><%= link_to "进入论坛", homeland_path %></li>
     <li><a href="<%= session_path(current_user.id) %>", data-method="delete">退出</a></li>
   </ul>
   <%end %>

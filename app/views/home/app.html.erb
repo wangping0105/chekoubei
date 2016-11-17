@@ -1,0 +1,8 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="cheKouBei" >
+  <%= image_tag(@response[:data][:avatar_url]) %>
+  <ul>
+    <%@every_get_url.each do |u| %>
+        <li><%= link_to u[:label], @params % u[:url], target: "_blank" %></li>
+    <% end %>
+  </ul>
+</div>

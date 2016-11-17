@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 #//分页
-gem 'kaminari'
+gem 'will_paginate', '~>3.1.5'
 # emoji表情
 gem 'emojimmy'
 # To use debugger 调试
@@ -59,6 +59,10 @@ gem "iconv", "~> 1.0.3"
 gem 'mechanize'
 # 极光
 gem 'jpush'
+
+gem "homeland"
+
+gem 'httparty', '~> 0.13.7'
 
 group :development do
   gem 'pry-rails'

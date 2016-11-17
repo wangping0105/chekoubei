@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def filter_page(relation)
-    relation = relation.page(params[:page]).per(params[:per_page])
+    relation = relation.page(params[:page]).per_page(params[:per_page] || 15)
     relation
   end
 

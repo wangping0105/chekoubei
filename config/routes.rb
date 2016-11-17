@@ -5,12 +5,15 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  mount Homeland::Engine, at: "/homeland"
   mount RuCaptcha::Engine => "/rucaptcha"
   draw :api
 
   root "home#index"
   resources :sessions
-  resources :home, only:[ :index]
+  resources :home, only:[ :index] do
+    get :app ,on: :collection
+  end
   resources :brands
   resources :cars
   resources :tags
